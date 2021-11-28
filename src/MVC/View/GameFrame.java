@@ -1,6 +1,5 @@
 package MVC.View;
 
-import java.awt.GridLayout;
 import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -14,31 +13,30 @@ public class GameFrame extends JFrame {
     private static final int game_x = 26;
     private static final int game_y = 12;
     JTextArea[][] text;
-
+    private RightPanel RPanel;
 
     public GameFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Tetris Battle");
-        this.setSize(500, 300);
+        this.setSize(600, 800);
         this.setVisible(true);
         this.setResizable(false);
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.add(creatMenus());
+        menuBar.add(creatAboutMenus());
+        this.add(RPanel,BorderLayout.EAST);
     }
 
-    private JMenu creatMenus() {
+    private JMenu creatAboutMenus() {
+    	 JMenu menu = new JMenu("About");
+    	 menu.add(creatAboutMenu());
+    	 return null;
+	}
+
+	private JMenu creatMenus() {
         JMenu menu = new JMenu("File");
 
-		/*class OpenActionListener implements ActionListener {
-			public void actionPerformed(ActionEvent e) {
-				OpenFileListener myFileListener = new OpenFileListener();
-				myFileListener.actionPerformed(e);
-			}
-		}
-		OpenActionListener listener = new OpenActionListener();*/
-
-        menu.add(creatAboutMenu());
         menu.add(creatFileExitItem());
         return menu;
     }

@@ -1,4 +1,4 @@
-package mvc.model;
+package MVC.model;
 
 import java.awt.*;
 
