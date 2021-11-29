@@ -8,6 +8,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import MVC.model.LeftPanelModel;
 import MVC.model.RightPanelModel;
 
 public class GameFrame extends JFrame {
@@ -16,9 +17,12 @@ public class GameFrame extends JFrame {
     private static final int game_y = 12;
     JTextArea[][] text;
     private RightPanel RPanel;
+    private LeftPanel LPanel;
     RightPanelModel rpm;
+    LeftPanelModel lpm;
     public GameFrame() {
     	rpm = new RightPanelModel();
+    	lpm = new LeftPanelModel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Tetris Battle");
         this.setSize(600, 800);
@@ -27,7 +31,8 @@ public class GameFrame extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(creatMenus());
         RPanel = new RightPanel(new BorderLayout(), rpm);
-        
+        LPanel = new LeftPanel(lpm);
+        this.add(LPanel,BorderLayout.CENTER);
         this.add(RPanel,BorderLayout.EAST);
         setJMenuBar(menuBar);
     }
@@ -57,11 +62,6 @@ public class GameFrame extends JFrame {
         return item;
     }
 
-	/*public void initGamePanel() {
-		JPanel game_main = new JPanel();
-		game_main.setLayout(new GridLayout(game_x, game_y, hgap:1, vgap:1));
-
-	}*/
 
 
 }

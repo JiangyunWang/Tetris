@@ -26,7 +26,8 @@ import java.awt.*;
 
             add(jLabel);
 
-            jLabel=new JLabel("By Jiangyun Wang & Yihan Wang");
+            jLabel=new JLabel("By Jiangyun W"
+            		+ " & Yihan W");
             jLabel.setBounds(60,140, 180, 60);
             add(jLabel);
         }

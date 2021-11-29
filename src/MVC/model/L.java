@@ -28,4 +28,6 @@ public class L extends AShape{
     public ShapeType getType() {
         return ShapeType.L;
     }
+    
+    
 }
