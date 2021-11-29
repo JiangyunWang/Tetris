@@ -1,4 +1,4 @@
-package mvc.model;
+package MVC.model;
 
 import java.awt.*;
 
@@ -28,4 +28,6 @@ public class L extends AShape{
     public ShapeType getType() {
         return ShapeType.L;
     }
+    
+    
 }
