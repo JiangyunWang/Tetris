@@ -20,11 +20,16 @@ public class RightPanel extends JPanel {
 	private RightPanelModel model;
 
 	private JPanel downPanel;
-	public RightPanel() {
-		downPanel = new JPanel();
-		downPanel.setSize(500,100);
-		this.add(nextBlock,BorderLayout.NORTH);
-		this.add(downPanel,BorderLayout.SOUTH);
+	public RightPanel(BorderLayout layout, RightPanelModel model) {
+		super(layout);
+		setSize(100,800);
+		this.model = model;
+		downPanel = new JPanel(new BorderLayout());
+		//downPanel.setSize(100,100);
+		creatPanel() ;
+		//this.add(nextBlock,BorderLayout.NORTH);
+		this.add(downPanel,BorderLayout.CENTER);
+		
 	}
 
 	
@@ -52,11 +57,14 @@ public class RightPanel extends JPanel {
 		erasedField.setText(String.valueOf(model.getLine()));//model!!
 	}
 	public void creatPanel() {
+		creatScoreLabel();
+		creatUserNameLabel();
+		eraseLineLabel();
 		downPanel.add(UserName,BorderLayout.NORTH);
 		downPanel.add(erasedLine,BorderLayout.CENTER);
 		downPanel.add(score,BorderLayout.SOUTH);
 	}
-	public void repaint(){
+	public void refresh(){
 		scoreField.setText(String.valueOf(model.getScore()));
 		nameField.setText(model.getName());
 		erasedField.setText(String.valueOf(model.getLine()));

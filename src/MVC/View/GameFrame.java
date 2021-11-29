@@ -8,24 +8,28 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import MVC.model.RightPanelModel;
+
 public class GameFrame extends JFrame {
 
     private static final int game_x = 26;
     private static final int game_y = 12;
     JTextArea[][] text;
     private RightPanel RPanel;
-
+    RightPanelModel rpm;
     public GameFrame() {
+    	rpm = new RightPanelModel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Tetris Battle");
         this.setSize(600, 800);
         this.setVisible(true);
         this.setResizable(false);
         JMenuBar menuBar = new JMenuBar();
-        setJMenuBar(menuBar);
         menuBar.add(creatMenus());
-        menuBar.add(creatAboutMenus());
+        RPanel = new RightPanel(new BorderLayout(), rpm);
+        
         this.add(RPanel,BorderLayout.EAST);
+        setJMenuBar(menuBar);
     }
 
     private JMenu creatAboutMenus() {
@@ -36,8 +40,8 @@ public class GameFrame extends JFrame {
 
 	private JMenu creatMenus() {
         JMenu menu = new JMenu("File");
-
         menu.add(creatFileExitItem());
+        menu.add(creatAboutMenu());
         return menu;
     }
     public JMenuItem creatAboutMenu() {
@@ -60,8 +64,4 @@ public class GameFrame extends JFrame {
 	}*/
 
 
-    public static void main(String[] args) {
-        GameFrame GameFrame = new GameFrame();
-        GameFrame.setVisible(true);
-    }
 }

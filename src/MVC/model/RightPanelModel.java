@@ -5,7 +5,7 @@ public class RightPanelModel {
 	private String name = "anonymity";
 	private int score = 0;
 	private ShapeType block;
-	public RightPanelModel() {  
+	public RightPanelModel() {
 	}
 	public int getLine() {return line;}
 	  

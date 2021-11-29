@@ -13,6 +13,7 @@ import java.awt.*;
             height = Toolkit.getDefaultToolkit().getScreenSize().height;
             setBounds((width - 300)/ 2, (height - 300) / 2,300,300);
             add();
+            this.setVisible(true); 
         }
 
         private void add() {
