@@ -1,6 +1,4 @@
-package mvc.model;
-
-import java.awt.*;
+package mvcw.model;
 
 public class Block {
     private AShape shape;
