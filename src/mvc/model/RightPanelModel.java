@@ -1,4 +1,4 @@
-package MVC.model;
+package mvc.model;
 
 public class RightPanelModel {
 	private int line = 0; 

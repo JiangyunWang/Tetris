@@ -1,7 +1,5 @@
 package mvc.model;
 
-import java.awt.*;
-
 public class Block {
     private AShape shape;
     private int[] movement;

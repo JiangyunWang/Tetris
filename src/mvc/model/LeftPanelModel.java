@@ -1,4 +1,4 @@
-package MVC.model;
+package mvc.model;
 
 import java.awt.Graphics;
 import javax.swing.SwingUtilities;
