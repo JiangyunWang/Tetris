@@ -3,6 +3,7 @@ package mvc.model;
 import java.awt.*;
 
 public interface IShape {
+	
     public void setColor(Color color);
     public void initCenter();
     public void setPosX(int x);
@@ -12,5 +13,7 @@ public interface IShape {
     public int[] getCenter();
     public int getRotation();
     public ShapeType getType();
+
+    
 
 }
