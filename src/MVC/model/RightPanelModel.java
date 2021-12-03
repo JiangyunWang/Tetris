@@ -4,10 +4,12 @@ public class RightPanelModel {
 	private int line = 0; 
 	private String name = "anonymity";
 	private int score = 0;
-	private ShapeType block;
+	private AShape block;
 	public RightPanelModel() {
 	}
 	public int getLine() {return line;}
+	
+	
 	  
 	public String getName() {
 		return name;
@@ -15,12 +17,7 @@ public class RightPanelModel {
 	public int getScore() {
 		return score;
 	}
-	public ShapeType getBlock() {
-		return block;
-	}
-	public void setBlock(ShapeType block) {
-		this.block = block;
-	}
+	//Block getter setter
 	public void setLine(int line) {
 		this.line = line;
 	}
