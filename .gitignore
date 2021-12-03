@@ -2,3 +2,4 @@
 .metadata/
 .classpath
 /bin/
+.DS_Store
