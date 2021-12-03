@@ -10,9 +10,9 @@ public class LeftPanelModel {
 	private static int xmax = size * 12;
 	private static int ymax = size * 24;
 	Boolean gameOver;
-	
+	private Ashape block;
 	private static int[][] map;
-	// private AShape currBlock;// is it Ashape?? 
+	
 	
 	public LeftPanelModel (){
 		map = new int[xunit][yunit];
@@ -36,16 +36,19 @@ public class LeftPanelModel {
 				}
 			}
 			if(isFull) {
-				++count;
+			    
+			    for(int k = 0;  k < yunit;++k) {
+			     if(i>0) {
+			      map[j][k] = map[i+1];
+			     }
+			     else {
+			      map[j][k] = 0;
+			     }
+			    }
+			    ++j;
 			}
 		}
-		///need to use another array!!!!!!!!!!! to store erased one! 
-		// to be check whether the logic is correct
-		for(int i = xunit-1; i-count >=0; --i) {
-			for(int j = yunit-1; j >= 0; --j) {
-				map[i][j] = map[i-count][j];
-			}
-		}
+		
 	}
 	/*public void setGameOver() {
 		gameOver = !gameOver;
