@@ -1,4 +1,4 @@
-package MVC.View;
+package mvc.view;
 
 import java.awt.*;
 import javax.swing.JFrame;
@@ -9,8 +9,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import MVC.model.LeftPanelModel;
-import MVC.model.RightPanelModel;
+import mvc.model.LeftPanelModel;
+import mvc.model.RightPanelModel;
 
 public class GameFrame extends JFrame {
 

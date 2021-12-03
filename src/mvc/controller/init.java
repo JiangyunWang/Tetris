@@ -1,9 +1,9 @@
-package MVC.Controller;
+package mvc.controller;
 
-import MVC.View.GameFrame;
-import MVC.View.setFrame;
-import MVC.model.LeftPanelModel;
-import MVC.model.RightPanelModel;
+import mvc.view.GameFrame;
+import mvc.view.setFrame;
+import mvc.model.LeftPanelModel;
+import mvc.model.RightPanelModel;
 
 public class init {
 	private boolean running;//should be in model
