@@ -1,4 +1,4 @@
-package MVC.View;
+package mvc.view;
 
 import java.awt.BorderLayout;
 
@@ -6,8 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import MVC.model.RightPanelModel;
-import MVC.model.ShapeType;
+import mvc.model.RightPanelModel;
+import mvc.model.ShapeType;
 
 public class RightPanel extends JPanel {
 	private static JLabel score;

@@ -1,4 +1,4 @@
-package MVC.View;
+package mvc.view;
 
 import javax.swing.JLabel;
 import javax.swing.JDialog;

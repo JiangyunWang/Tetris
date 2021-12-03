@@ -13,6 +13,9 @@ public interface IShape {
     public int[] getCenter();
     public int getRotation();
     public ShapeType getType();
+    public void moveLeft();
+    public void moveRight();
+    public void goDown();
 
     
 

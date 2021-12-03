@@ -20,7 +20,7 @@ public class L extends AShape{
  */
         int[] temp = new int[2];
         temp[0] = 0;
-        temp[1] = 3;
+        temp[1] = 2;
         this.center = temp;
     }
 

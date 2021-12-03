@@ -1,4 +1,4 @@
-package MVC.View;
+package mvc.view;
 
 public class setFrame {
 	

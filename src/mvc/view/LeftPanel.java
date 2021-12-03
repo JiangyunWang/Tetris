@@ -1,4 +1,4 @@
-package MVC.View;
+package mvc.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,8 +6,8 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import MVC.model.LeftPanelModel;
-import MVC.model.RightPanelModel;
+import mvc.model.LeftPanelModel;
+import mvc.model.RightPanelModel;
 
 public class LeftPanel extends JPanel{
 	private LeftPanelModel model;

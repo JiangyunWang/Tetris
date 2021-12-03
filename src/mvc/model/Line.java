@@ -17,8 +17,8 @@ public class Line extends AShape{
 
  */
         int[] temp = new int[2];
-        temp[0] = 0;
-        temp[1] = 2;
+        temp[0] = 2;
+        temp[1] = 0;
         this.center = temp;
     }
 
