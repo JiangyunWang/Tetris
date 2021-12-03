@@ -1,4 +1,4 @@
-package mvcw.model;
+package mvc.model;
 
 public class Block {
     private AShape shape;
