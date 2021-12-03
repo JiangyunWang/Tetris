@@ -21,6 +21,31 @@ public class init {
 		i.go();
 	}
 	
+	
+    /*public static void setShape(int shapeInt) { to be modify!!!
+    	if(shapeInt < 15) {
+    		block = new Ashape();// parameter
+    	}
+    	else if (shapeInt < 30) {
+    		block = new Ashape();//
+    	}
+    	else if(shapeInt < 45) {
+    		block = new Ashape();//
+    	}
+    	else if(shapeInt < 60) {
+    		block = new Ashape();//
+    	}
+    	else if (shapeInt < 75) {
+    		block = new Ashape();//
+    	}
+    	else if(shapeInt < 90) {
+    		block = new Ashape();//
+    	}
+    	else if(shapeInt < 105) {
+    		block = new Ashape();
+    	}
+    	lpm.setBlock(shapeInt);
+    }*/
 	public void go() {
 		while(true) {
 			if(running == false) {
