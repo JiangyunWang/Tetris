@@ -10,7 +10,7 @@ public class LeftPanelModel {
 	private static int xmax = size * 12;
 	private static int ymax = size * 24;
 	Boolean gameOver;
-	private Ashape block;
+	private Ishape block;
 	private static int[][] map;
 	
 	
@@ -29,25 +29,22 @@ public class LeftPanelModel {
 	public void earseLine() { // i = row, j = column 
 		boolean isFull = true;
 		int count = 0;
+		int[][] temp = new int[xunit][yunit];
 		for(int i = xunit-1; i >=0; --i) {
 			for(int j = yunit-1; j >= 0; --j) {
 				if(map[i][j] == 0) {
 					isFull = false;
+					break;
 				}
 			}
-			if(isFull) {
-			    
-			    for(int k = 0;  k < yunit;++k) {
-			     if(i>0) {
-			      map[j][k] = map[i+1];
-			     }
-			     else {
-			      map[j][k] = 0;
-			     }
-			    }
+			if(!isFull) {
+				for(int k = 0;  k < yunit;++k) {
+				      temp[j][k] = map[i+1];
+				 }
 			    ++j;
 			}
 		}
+		map = temp;
 		
 	}
 	/*public void setGameOver() {
