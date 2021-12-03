@@ -10,17 +10,17 @@ public class LeftPanelModel {
 	private static int xmax = size * 12;
 	private static int ymax = size * 24;
 	Boolean gameOver;
-	private Ishape block;
+	private IShape block;
 	private static int[][] map;
 	
 	
 	public LeftPanelModel (){
 		map = new int[xunit][yunit];
-		 for(int i = 0; i < xunit; ++i) {
+		/* for(int i = 0; i < xunit; ++i) {
 			 for (int j = 0; j < yunit; ++j) {
 				 map[i][j] = 0;
 			 }
-		 }
+		 }*/
 		gameOver = false;
 	 }
 	
@@ -30,19 +30,15 @@ public class LeftPanelModel {
 		boolean isFull = true;
 		int count = 0;
 		int[][] temp = new int[xunit][yunit];
+		int cnt = xunit -1;
 		for(int i = xunit-1; i >=0; --i) {
-			for(int j = yunit-1; j >= 0; --j) {
+			for(int j = 0; j < yunit; ++j) {
 				if(map[i][j] == 0) {
-					isFull = false;
-					break;
+					temp[cnt] = map[i];
+					cnt--;
 				}
 			}
-			if(!isFull) {
-				for(int k = 0;  k < yunit;++k) {
-				      temp[j][k] = map[i+1];
-				 }
-			    ++j;
-			}
+		
 		}
 		map = temp;
 		
