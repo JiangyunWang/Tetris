@@ -23,7 +23,9 @@ public class T extends AShape{
         temp[1] = 1;
         this.center = temp;
     }
-
+/*getshape(){
+	
+}*/
     @Override
     public ShapeType getType() {
         return ShapeType.T;
