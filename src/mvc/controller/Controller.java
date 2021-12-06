@@ -14,15 +14,24 @@ public class Controller {
     private RightPanelModel rpm;
     private IShape nexShape;
 
-
-
 public Controller() {
         this.gf = new GameFrame();
-        this.lpm = new LeftPanelModel();
         this.rpm = new RightPanelModel();
         this.nexShape = rpm.getBlock();
+        this.lpm = new LeftPanelModel(nexShape);
 
 }
+
+
+    public void configureKeyListener() {
+        KeyListener klistener = new KeyListener();
+        KeyListener.setKeyAction("moveLeft", lpm.getBlock().)
+
+
+        blistener.setButtonClickedActionMap(buttonMap);
+        this.view.addActionListener(blistener);
+
+    }
 
 
 
