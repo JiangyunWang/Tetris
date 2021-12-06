@@ -1,6 +1,6 @@
 package mvc.view;
 
-import java.awt.*;
+//import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -8,6 +8,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import mvc.model.LeftPanelModel;
 import mvc.model.RightPanelModel;
@@ -17,8 +19,8 @@ public class GameFrame extends JFrame {
     private static final int game_x = 26;
     private static final int game_y = 12;
     JTextArea[][] text;
-    private RightPanel RPanel;
-    private LeftPanel LPanel;
+    private RightPanel rPanel;
+    private LeftPanel lPanel;
     LeftPanelModel lpm;
     RightPanelModel rpm;
     
@@ -68,6 +70,10 @@ public class GameFrame extends JFrame {
     	JLabel l = new JLabel();
     	l.setText("GameOver!");
     	return l;
+    }
+
+    public void keyMovement()  {
+
     }
 
 }

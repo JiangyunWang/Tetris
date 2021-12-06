@@ -23,18 +23,5 @@ public Controller() {
 }
 
 
-    public void configureKeyListener() {
-        KeyListener klistener = new KeyListener();
-        KeyListener.setKeyAction("moveLeft", lpm.getBlock().)
-
-
-        blistener.setButtonClickedActionMap(buttonMap);
-        this.view.addActionListener(blistener);
-
-    }
-
-
-
-
 }
 
