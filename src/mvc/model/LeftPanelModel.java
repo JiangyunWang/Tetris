@@ -145,25 +145,60 @@ public class LeftPanelModel {
 			break;
 		case LINE:
 			/*
-			 * 
+			 * 11011
 			 */
 			if(rotation == 0) {
-				map[]
+				map[x][y] = 1;
+				map[x][y-1] =1;
+				map[x][y-2] = 1;
+				map[x][y+1] = 1;
+				map[x][y+2] = 1;
 			}
+			/*
+			 * 1
+			 * 1
+			 * 0
+			 * 1
+			 * 1
+			 */
 			else if (rotation == 1) {
-				
+				map[x][y] = 1;
+				map[x-1][y] =1;
+				map[x-2][y] =1;
+				map[x+1][y] = 1;
+				map[x+2][y] = 1;
 			}
 			else if (rotation == 2) {
-				
+				map[x][y] = 1;
+				map[x][y-1] =1;
+				map[x][y-2] = 1;
+				map[x][y+1] = 1;
+				map[x][y+2] = 1;
+
 			}
 			else {
-				
+				map[x][y] = 1;
+				map[x-1][y] =1;
+				map[x-2][y] =1;
+				map[x+1][y] = 1;
+				map[x+2][y] = 1;
 			}
 			break;
 		case S:
+			/*    1 1
+			 *  1 0
+			 */
 			if(rotation == 0) {
-				
+				map[x][y] = 1;
+				map[x][y-1] =1;
+				map[x-1][y] = 1;
+				map[x-1][y+1] = 1;
 			}
+			/*
+			 * 	1
+			 *  0 1
+			 *    1
+			 */
 			else if (rotation == 1) {
 				
 			}
@@ -189,6 +224,10 @@ public class LeftPanelModel {
 			}
 			break;
 		case Z:
+			/*
+			 * 11
+			 *  01
+			 */
 			if(rotation == 0) {
 				
 			}
@@ -223,8 +262,11 @@ public class LeftPanelModel {
 	/*public checkBlockPosition() {
 		
 	}*/
-	public void setBlock(IShape) {
-		
+	public void setBlock(IShape block) {
+		this.block = block;
+	}
+	public IShape getBlock() {
+		return block;
 	}
 	public void updateMap() {
 		

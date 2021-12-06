@@ -13,8 +13,7 @@ public class Z extends AShape{
     @Override
     public void initCenter() {
         /*       11
-                  0
-                  11
+                  01
 
  */
         int[] temp = new int[2];
