@@ -130,6 +130,8 @@ public class LeftPanelModel {
 				map[x+1][y] = 1;
 				map[x+2][y] =1;
 			}
+			
+			
 			/*
 			 * 1 1 0 
 			 * 	   1
