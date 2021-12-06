@@ -36,8 +36,8 @@ public class LeftPanel extends JPanel{
 		  }
 	}
 	
-	/*private void DrawBlockes() {
+	private void DrawBlockes() {
 		
 		for(int i = )
-	}*/
+	}
 }

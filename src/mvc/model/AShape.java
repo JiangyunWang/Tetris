@@ -48,6 +48,7 @@ public abstract class AShape implements IShape {
 
     @Override
     public void setRotate() {
+    	// need to set to 0 after 3
         this.rotate += 1;
     }
 
