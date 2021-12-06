@@ -19,13 +19,12 @@ public class GameFrame extends JFrame {
     JTextArea[][] text;
     private RightPanel RPanel;
     private LeftPanel LPanel;
-    RightPanelModel rpm;
     LeftPanelModel lpm;
+    RightPanelModel rpm;
     
     public GameFrame() {
     	
-    	rpm = new RightPanelModel();
-    	lpm = new LeftPanelModel();
+    
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Tetris Battle");
         this.setSize(600, 800);

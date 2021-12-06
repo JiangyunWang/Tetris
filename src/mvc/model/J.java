@@ -19,8 +19,8 @@ public class J extends AShape{
 
  */
         int[] temp = new int[2];
-            temp[0] = 1;
-            temp[1] = 2;
+            temp[0] = 2;
+            temp[1] = 1;
         this.center = temp;
     }
 
