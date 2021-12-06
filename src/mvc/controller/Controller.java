@@ -14,13 +14,16 @@ public class Controller {
     private RightPanelModel rpm;
     private IShape nexShape;
 
+
     public Controller() {
+
         this.gf = new GameFrame();
         this.rpm = new RightPanelModel();
         this.nexShape = rpm.getBlock();
         this.lpm = new LeftPanelModel(nexShape);
 
     }
+
 
 
 }
