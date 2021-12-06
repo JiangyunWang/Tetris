@@ -26,4 +26,53 @@ public class Square extends AShape{
     public ShapeType getType() {
         return ShapeType.SQUARE;
     }
+    public int[][] drawShape(){
+      	 int[][] currLook = new int[2][2];
+   	    int rotation = this.getRotation();
+   	    int[] center = this.getCenter();
+   		int x = center[0];
+   		int y = center[1];
+   		
+   		/*
+   		 * 0 1
+   		 * 1 1
+   		 */
+   		if(rotation == 0) {
+			currLook[x][y] = 1; 
+			currLook[x+1][y] = 1; 
+			currLook[x+1][y] = 1; 
+			currLook[x+1][y+1] = 1; 
+		}
+   		/*
+   		 * 1 0
+   		 * 1 1
+   		 */
+		else if (rotation == 1) {
+			currLook[x][y] = 1; 
+			currLook[x][y-1] = 1; 
+			currLook[x+1][y+1] = 1; 
+			currLook[x+1][y] = 1; 
+		}
+   		/* 
+   		 * 1 1 
+   		 * 1 0
+   		 */
+		else if (rotation == 2) {
+			currLook[x][y] = 1; 
+			currLook[x-1][y] = 1; 
+			currLook[x-1][y-1] = 1; 
+			currLook[x][y-1] = 1; 
+		}
+   		/*
+   		 * 1 1
+   		 * 0 1
+   		 */
+		else {
+			currLook[x][y] = 1; 
+			currLook[x][y+1] = 1; 
+			currLook[x-1][y] = 1; 
+			currLook[x-1][y] = 1; 
+		}
+   		return currLook;
+       }
 }
