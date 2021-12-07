@@ -26,7 +26,7 @@ public class Square extends AShape{
     public ShapeType getType() {
         return ShapeType.SQUARE;
     }
-    public int[][] drawShape(){
+    public int[][] currLook(){
       	 int[][] currLook = new int[2][2];
    	    int rotation = this.getRotation();
    	    int[] center = this.getCenter();
