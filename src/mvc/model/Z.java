@@ -32,8 +32,8 @@ public class Z extends AShape{
       	 int[][] currLook = new int[3][2];
    	    int rotation = this.getRotation();
    	    int[] center = this.getCenter();
-   		int x = center[0];
-   		int y = center[1];
+   		int x = 1;
+   		int y = 1;
    		
    		/*
    		 * 1 1 
