@@ -15,7 +15,11 @@ public class Controller {
     private IShape nexShape;
     private int[][] map;
 
+
     public Controller() {
+
+
+        this.gf = new GameFrame();
         this.rpm = new RightPanelModel();
         this.nexShape = rpm.getBlock();
         this.lpm = new LeftPanelModel(nexShape);
@@ -29,6 +33,7 @@ public class Controller {
     public void move() {
 
     }
+
 
 
 }

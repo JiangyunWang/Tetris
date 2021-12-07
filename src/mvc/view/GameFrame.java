@@ -1,8 +1,10 @@
 package mvc.view;
 
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -10,6 +12,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import mvc.model.IShape;
 import mvc.model.LeftPanelModel;
@@ -32,6 +36,7 @@ public class GameFrame extends JFrame {
     	
 //    	rpm = new RightPanelModel();
 //    	lpm = new LeftPanelModel();
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Tetris Battle");
         this.setSize(600, 800);
@@ -76,6 +81,7 @@ public class GameFrame extends JFrame {
     	l.setText("GameOver!");
     	return l;
     }
+
 
 //    *******WJY*******
     public void setBoard(int[][] map) {
@@ -126,6 +132,7 @@ public class GameFrame extends JFrame {
         //2.  left most has block
         IShape curr = s.
         if ()
+
     }
 
 }

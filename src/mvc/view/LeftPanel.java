@@ -60,3 +60,4 @@ public class LeftPanel extends JPanel implements ActionListener {
 //		for(int i = )
 //	}
 }
+
