@@ -27,7 +27,7 @@ public class Line extends AShape{
         return ShapeType.LINE;
     }
     
-    public int[][] drawShape(){
+    public int[][] currLook(){
    	 int[][] currLook = null;
    	 int rotation = this.getRotation();
 	    int[] center = this.getCenter();

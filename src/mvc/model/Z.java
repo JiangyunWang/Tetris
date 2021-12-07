@@ -28,7 +28,7 @@ public class Z extends AShape{
     }
     
     
-    public int[][] drawShape(){
+    public int[][] currLook(){
       	 int[][] currLook = new int[3][2];
    	    int rotation = this.getRotation();
    	    int[] center = this.getCenter();

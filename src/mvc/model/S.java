@@ -27,7 +27,7 @@ public class S extends AShape{
         return ShapeType.S;
     }
     
-    public int[][] drawShape(){
+    public int[][] currLook(){
       	 int[][] currLook = null;
    	    int rotation = this.getRotation();
    	    int[] center = this.getCenter();

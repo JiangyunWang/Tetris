@@ -29,7 +29,7 @@ public class J extends AShape{
         return ShapeType.J;
     }
 
-    public int[][] drawLook(){
+    public int[][] currLook(){
 	    int[][] currLook = new int[3][2];
 	    int rotation = this.getRotation();
 	    int[] center = this.getCenter();
