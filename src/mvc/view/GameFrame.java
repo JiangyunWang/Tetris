@@ -130,8 +130,7 @@ public class GameFrame extends JFrame {
     private void leftMovement() {
         //1. reach the bound of the board
         //2.  left most has block
-        IShape curr = s.
-        if ()
+        if (block)
 
     }
 
