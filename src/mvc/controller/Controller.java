@@ -27,7 +27,7 @@ public class Controller {
         this.gf = new GameFrame();
         gf.setBoard(map);
         gf.setBlock(lpm);
-
+        
     }
 
     public void move() {

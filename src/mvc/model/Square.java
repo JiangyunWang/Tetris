@@ -30,8 +30,8 @@ public class Square extends AShape{
       	 int[][] currLook = new int[2][2];
    	    int rotation = this.getRotation();
    	    int[] center = this.getCenter();
-   		int x = center[0];
-   		int y = center[1];
+   		int x = 0;
+   		int y = 0;
    		
    		/*
    		 * 0 1

@@ -1,6 +1,9 @@
 package mvc.model;
 
 import java.awt.Graphics;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.SwingUtilities;
 
 public class LeftPanelModel {
@@ -12,7 +15,18 @@ public class LeftPanelModel {
 	Boolean gameOver;
 	private IShape block;
 	private static int[][] map;
-	private static int[][] inmoveMap;
+	private Timer timer2;
+	
+	public Timer getTimer2() {
+		return timer2;
+	}
+
+
+	public void setTimer2(Timer timer2) {
+		this.timer2 = timer2;
+	}
+
+	//private static int[][] inmoveMap;
 	public static int getXunit() {
 		return xunit;
 	}
@@ -76,53 +90,122 @@ public class LeftPanelModel {
 	
 	// need to check gameover
 	
-	public void earseLine() { // i = row, j = column 
+	public void eraseLine() { // i = row, j = column 
 		int[][] temp = new int[xunit][yunit];
 		int cnt = xunit -1;
+		//!!!!!!!!!! !!!!!!somehow get score 
+		int score = 0;
 		for(int i = xunit-1; i >=0; --i) {
 			for(int j = 0; j < yunit; ++j) {
 				if(map[i][j] == 0) {
 					temp[cnt] = map[i];
 					cnt--;
+					
+					/*
+					 * ++score
+					 */
 				}
 			}
+			if(score < 2) {
+				
+			}
+			else if(score < 6) {
+				score *= 2;
+			}
+			else {
+				score *=3;
+			}
+			// somehow add score back to right panel
 		
 		}
 		map = temp;
 		
 	}
 	
-	public void drawBlock() {
-		// to be modify ,MAYBE
-		int[][] currLook = block.currLook();
-		for(int i = 0; i < currLook.length; ++i) {
-			for (int j = 0; j < currLook.length; ++j){
-				map[i][j] = currLook[i][j];
-			}
-		}
-		
-	}
-	/*public checkBlockPosition() {
-		
-	}*/
 	public void setBlock(IShape block) {
 		this.block = block;
 	}
 	public IShape getBlock() {
 		return block;
 	}
+	// block become a part of map
 	public void updateMap() {
 		int[][] currLook = block.currLook();
+		int[] currPos = block.getPos();
+
+		boolean shouldChangeToMap = false;
 		for(int i =0; i < currLook.length;++i) {
 			for (int j =0; j < currLook[i].length;++j) {
 				if(currLook[i][j] == 1) {
-					if(i == xunit-1) {
-						
+					
+					if(i+currPos[1] == xunit-1) {
+						shouldChangeToMap = true;
+						break;
+					}
+					else if(map[i+1+currPos[0]][j] == 1) {
+						shouldChangeToMap = true;
+						break;
 					}
 				}
 			}
+			if(shouldChangeToMap) {
+				break;
+			}
 		}
+		if(shouldChangeToMap) {
+			for(int i =0; i < currLook.length;++i) {
+				for (int j =0; j < currLook[i].length;++j) {
+					if(currLook[i][j] == 1) {
+						map[i][j] = 1;
+					}
+				}
+			}
+			//!!!!!!!!!!!!
+			//this.block = rpm.getBlock();// need get next block in right panel model
+			// !!!!!!!!!!!!!!need timer here???
+		}
+		this.eraseLine(); // do we need check here?
+		//gameOver(); //do we need to check here??
+	}
+
+	public boolean gameOver() {
+		
+		for(int i = 0; i < yunit; ++i) {
+			if(map[0][i] == 1) {
+				gameOver = true;
+				//gameJpanel.setOverFlag(true);
+			}
+		}
+		// need to call gameover 
+		return gameOver;
 	}
 	
-	
+	// map will grow after few second
+	public void autoUp(){
+		timer2 = new Timer();
+
+		timer2.schedule(new TimerTask()
+		{
+			@Override
+			public void run()
+			{
+				
+				growSelf();
+				
+			}
+		}, 0, 16000);
+	}
+	private void growSelf() {
+		int k= (int) (Math.random() % yunit)+1;
+		for (int i = 0; i<xunit-1; i++) {
+			for (int j = 0; j < yunit; j++) {
+				map[i][j]=map[i+1][j];
+			}
+		}
+		for(int i = 0; i < yunit; ++i) {
+			map[xunit-1][i] = 1;
+		}
+		map[xunit-1][k] = 0;
+		eraseLine();
+	}
 }

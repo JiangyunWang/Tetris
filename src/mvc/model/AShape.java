@@ -7,17 +7,20 @@ public abstract class AShape implements IShape {
     protected Color color;
     protected int[] center;
     protected int rotate;
+    int[] pos;
 
+    // pos[0] = changes in x, pos[1] are changes in y
     public AShape(ShapeType type, Color color, int[] pos, int rotate) {
         if (type == null || color == null || pos == null) {
             throw new IllegalStateException("Invalid shape parameter");
-        } else if (pos[0] < 0 || pos[1] < 0 || rotate < 0) {
+        } else if (pos[1] < 0 ||rotate < 0 ) {
             throw new IllegalStateException("parameter can't be negative");
         }
         this.type = type;
         this.color = color;
         this.center = pos;
         this.rotate = rotate;
+        this.pos = pos;
     }
 
     public AShape(ShapeType type) {
@@ -87,5 +90,12 @@ public abstract class AShape implements IShape {
     public void goDown(){
 //        speed up timer;
 
+    }
+    
+    public int[] getPos() {
+    	return pos;
+    }
+    public void setPos(int[] pos) {
+    	this.pos = pos;
     }
 }
