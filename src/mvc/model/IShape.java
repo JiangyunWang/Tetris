@@ -16,7 +16,7 @@ public interface IShape {
     public void moveLeft();
     public void moveRight();
     public void goDown();
-
+    public int[][] currLook();
     
 
 }
