@@ -13,12 +13,20 @@ public class Controller {
     private LeftPanelModel lpm;
     private RightPanelModel rpm;
     private IShape nexShape;
+    private int[][] map;
 
     public Controller() {
-        this.gf = new GameFrame();
         this.rpm = new RightPanelModel();
         this.nexShape = rpm.getBlock();
         this.lpm = new LeftPanelModel(nexShape);
+        this.map = lpm.getMap();
+        this.gf = new GameFrame();
+        gf.setBoard(map);
+        gf.setBlock(lpm);
+
+    }
+
+    public void move() {
 
     }
 
