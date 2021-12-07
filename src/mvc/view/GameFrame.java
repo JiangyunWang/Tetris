@@ -1,6 +1,10 @@
 package mvc.view;
 
-//import java.awt.*;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -11,8 +15,10 @@ import javax.swing.JTextArea;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import mvc.model.IShape;
 import mvc.model.LeftPanelModel;
 import mvc.model.RightPanelModel;
+
 
 public class GameFrame extends JFrame {
 
@@ -21,12 +27,16 @@ public class GameFrame extends JFrame {
     JTextArea[][] text;
     private RightPanel rPanel;
     private LeftPanel lPanel;
-    LeftPanelModel lpm;
-    RightPanelModel rpm;
+    private int[][] board;
+    private IShape block;
+//    RightPanelModel rpm;
+//    LeftPanelModel lpm;
     
     public GameFrame() {
     	
-    
+//    	rpm = new RightPanelModel();
+//    	lpm = new LeftPanelModel();
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Tetris Battle");
         this.setSize(600, 800);
@@ -34,10 +44,10 @@ public class GameFrame extends JFrame {
         this.setResizable(false);
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(creatMenus());
-        RPanel = new RightPanel(new BorderLayout(), rpm);
-        LPanel = new LeftPanel(lpm);
-        this.add(LPanel,BorderLayout.CENTER);
-        this.add(RPanel,BorderLayout.EAST);
+//        Panel = new RightPanel(new BorderLayout(), rpm);
+//        lPanel = new LeftPanel(lpm);
+//        this.add(lPanel,BorderLayout.CENTER);
+//        this.add(Panel,BorderLayout.EAST);
         setJMenuBar(menuBar);
     }
 
@@ -72,7 +82,56 @@ public class GameFrame extends JFrame {
     	return l;
     }
 
-    public void keyMovement()  {
+
+//    *******WJY*******
+    public void setBoard(int[][] map) {
+        this.board = map;
+    }
+
+    public void setBlock(IShape s) {
+        this.block  = s;
+    }
+
+    public void keyMovement(IShape s) {
+        lPanel.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        int dir = e.getKeyCode();
+                        switch (dir) {
+                            case KeyEvent.VK_LEFT:
+                                s.moveLeft();
+                            case KeyEvent.VK_RIGHT:
+                                s.moveRight();
+                            case KeyEvent.VK_DOWN:
+                                lPanel.speedUp();
+                            case KeyEvent.VK_SPACE:
+                                s.setRotate();
+
+                        }
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        int dir =  e.getKeyCode();
+                        if (dir==KeyEvent.VK_DOWN)  {
+                            lPanel.speedBack();
+                        }
+                    }
+                }
+        );
+    }
+
+    private void leftMovement() {
+        //1. reach the bound of the board
+        //2.  left most has block
+        IShape curr = s.
+        if ()
 
     }
 

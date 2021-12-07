@@ -5,20 +5,22 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import mvc.model.LeftPanelModel;
 import mvc.model.RightPanelModel;
 
-public class LeftPanel extends JPanel{
+public class LeftPanel extends JPanel implements ActionListener {
 	private LeftPanelModel model;
+	private Timer time;
+	private int speed;
 
 	public LeftPanel(LeftPanelModel model) {
 		setSize(100,800);
 		this.model = model;
+		this.speed = 1;
+		this.time= new Timer(1000/speed, this);
 
 
 	}
@@ -39,9 +41,23 @@ public class LeftPanel extends JPanel{
 			g.drawLine(0, j, 11*25, j);
 		}
 	}
-	
+
+	public void speedUp() {
+		this.speed+=5;
+	}
+
+	public void speedBack() {
+		this.speed=1;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+	}
+
 //	private void DrawBlockes() {
 //
 //		for(int i = )
 //	}
 }
+
