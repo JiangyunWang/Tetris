@@ -92,6 +92,8 @@ public abstract class AShape implements IShape {
 
     }
     
+    
+    
     public int[] getPos() {
     	return pos;
     }

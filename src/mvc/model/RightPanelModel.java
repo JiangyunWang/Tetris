@@ -14,6 +14,8 @@ public class RightPanelModel {
 		this.line = 0;
 		this.name = "anonymity";
 		this.score = 0;
+
+		rnd = new Random(); // YIHan for TESTING****************************
 		this.block  = generateShape();
 	}
 
@@ -68,5 +70,6 @@ public class RightPanelModel {
 	public IShape getBlock() {
 		return block;
 	}
+	
 
 }

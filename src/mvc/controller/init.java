@@ -6,55 +6,23 @@ import mvc.model.LeftPanelModel;
 import mvc.model.RightPanelModel;
 
 public class init {
-	private boolean running;//should be in model
-	// total model
-	
-	public void init() {
-		running = true;
-	}
-	
+
 	public static void main(String[] args) {
-		init i = new init();
+
 		//initialize
+		boolean running = true;
 		GameFrame GameFrame = new GameFrame(/*total model*/);
 	    GameFrame.setVisible(true);
-		i.go();
-	}
-	
-	
-    /*public static void setShape(int shapeInt) { to be modify!!!
-    	if(shapeInt < 15) {
-    		block = new Ashape();// parameter
-    	}
-    	else if (shapeInt < 30) {
-    		block = new Ashape();//
-    	}
-    	else if(shapeInt < 45) {
-    		block = new Ashape();//
-    	}
-    	else if(shapeInt < 60) {
-    		block = new Ashape();//
-    	}
-    	else if (shapeInt < 75) {
-    		block = new Ashape();//
-    	}
-    	else if(shapeInt < 90) {
-    		block = new Ashape();//
-    	}
-    	else if(shapeInt < 105) {
-    		block = new Ashape();
-    	}
-    	lpm.setBlock(shapeInt);
-    }*/
-	public void go() {
+		Controller c = new Controller(); //*******yihan********
 		while(true) {
 			if(running == false) {
 				break;
 			}
-			//int nextBlock = (int) (Math.random()*105);
+			c.move();
 			
 		}
-		// show game over
 	}
+	
+
 	  
 }

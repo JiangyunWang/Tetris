@@ -18,5 +18,4 @@ public interface IShape {
     public void goDown();
     public int[][] currLook();
     public int[] getPos();
-
 }
