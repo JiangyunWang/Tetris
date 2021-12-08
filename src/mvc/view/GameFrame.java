@@ -44,10 +44,10 @@ public class GameFrame extends JFrame {
         this.setResizable(false);
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(creatMenus());
-//        Panel = new RightPanel(new BorderLayout(), rpm);
-//        lPanel = new LeftPanel(lpm);
-//        this.add(lPanel,BorderLayout.CENTER);
-//        this.add(Panel,BorderLayout.EAST);
+//      Panel = new RightPanel(new BorderLayout(), rpm);
+ //     lPanel = new LeftPanel(lpm);
+//      this.add(lPanel,BorderLayout.CENTER);
+//      this.add(Panel,BorderLayout.EAST);
         setJMenuBar(menuBar);
     }
 
@@ -92,7 +92,8 @@ public class GameFrame extends JFrame {
         this.block  = s;
     }
 
-    public void keyMovement(IShape s) {
+    //*******for testing
+   public void keyMovement(IShape s) {
         lPanel.addKeyListener(
                 new KeyListener() {
                     @Override
