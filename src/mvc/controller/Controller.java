@@ -15,21 +15,21 @@ public class Controller {
     private LeftPanelModel lpm;
     private RightPanelModel rpm;
     private IShape nexShape;
+    private IShape  currShape;
     private int[][] map;
 
 
     public Controller() {
         this.gf = new GameFrame();
         this.rpm = new RightPanelModel();
-        this.nexShape = rpm.getBlock();
-        this.lpm = new LeftPanelModel(nexShape);
+        this.lpm = new LeftPanelModel();
         this.map = lpm.getMap();
-        this.gf = new GameFrame();
-        gf.setBoard(map);
-        gf.setBlock(nexShape); // YIHAN correct error************
+        this.currShape = lpm.getBlock();
+//        gf.setBoard(map);
+//        gf.setBlock(nexShape); // YIHAN correct error************
         
         // ******* yihan ****************
-      /*  class MyListener implements KeyListener{
+      class MyListener implements KeyListener{
 
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -49,7 +49,7 @@ public class Controller {
                             case KeyEvent.VK_DOWN:
                                lpm.speedUp();
                             case KeyEvent.VK_SPACE:
-                                nexShape.setRotate();//***for test
+                                nexShape.setRotate();
 
                         }
 			    // repaint
@@ -58,29 +58,38 @@ public class Controller {
 				
 			}
 
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+          @Override
+          public void keyReleased(KeyEvent e) {
+              int dir =  e.getKeyCode();
+              if (dir==KeyEvent.VK_DOWN)  {
+                  gf.getlPanel().speedBack();
+              }
+          }
         	
         }
-        this.gf.addKeyListener(new MyListener());*/
-        // ****************************
+        this.gf.addKeyListener(new MyListener());
     }
 
-    public void move() {
-    	// ***********yihan***************
-        // how to begin timer.........
-    	lpm.autoDown(); //************************
-    	
-        	
-        	//if need new block
-        if(lpm.getNeedNewBlock()) {
-        	lpm.setBlock(nexShape);
+//    public void move() {
+//    	// ***********yihan***************
+//        // how to begin timer.........
+//    	lpm.autoDown(); //************************
+//
+//
+//        	//if need new block
+//        if(lpm.getNeedNewBlock()) {
+//        	lpm.setBlock(nexShape);
+//        }
+//
+//    }
+    public void start(int[][] map, IShape shape) {
+        for (int i=0; i<map.length; i++) {
+            for(int j=0; j<map[0].length; j++) {
+
+            }
         }
-        
     }
+
 
     
     

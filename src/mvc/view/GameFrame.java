@@ -83,7 +83,13 @@ public class GameFrame extends JFrame {
     }
 
 
+
 //    *******WJY*******
+
+    public LeftPanel getlPanel(){
+        return this.lPanel;
+    }
+    /*
     public void setBoard(int[][] map) {
         this.board = map;
     }
@@ -128,13 +134,8 @@ public class GameFrame extends JFrame {
         );
     }
 
-    private void leftMovement() {
-        //1. reach the bound of the board
-        //2.  left most has block
-        if (block)
+        */
+        	
 
-        	
-        	
-    }
 
 }
