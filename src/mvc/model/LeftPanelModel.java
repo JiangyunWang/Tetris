@@ -7,6 +7,7 @@ import java.util.TimerTask;
 import javax.swing.SwingUtilities;
 
 public class LeftPanelModel {
+	// leftPanel should have next block in the beginning
 	private static final int size = 25;
 	private static int yunit = 12;
 	private static int xunit = 24;
@@ -65,15 +66,15 @@ public class LeftPanelModel {
 	}
 
 	//private static int[][] inmoveMap;
-	public static int getXunit() {
+	public int getXunit() {
 		return xunit;
 	}
 
-	public static void setXunit(int xunit) {
+	public void setXunit(int xunit) {
 		LeftPanelModel.xunit = xunit;
 	}
 
-	public static int getYunit() {
+	public int getYunit() {
 		return yunit;
 	}
 
@@ -81,7 +82,7 @@ public class LeftPanelModel {
 		LeftPanelModel.yunit = yunit;
 	}*/
 
-	public static int getXmax() {
+	public int getXmax() {
 		return xmax;
 	}
 
@@ -89,7 +90,7 @@ public class LeftPanelModel {
 		LeftPanelModel.xmax = xmax;
 	}*/
 
-	public static int getYmax() {
+	public int getYmax() {
 		return ymax;
 	}
 
@@ -105,11 +106,11 @@ public class LeftPanelModel {
 		this.gameOver = gameOver;
 	}
 
-	public static int[][] getMap() {
+	public int[][] getMap() {
 		return map;
 	}
 
-	public static void setMap(int[][] map) {
+	public void setMap(int[][] map) {
 		LeftPanelModel.map = map;
 	}
 	
@@ -157,6 +158,8 @@ public class LeftPanelModel {
 		return block;
 	}
 	// block become a part of map
+	//********************need update*********************************
+	
 	public void updateMap() {
 		int[][] currLook = block.currLook();
 		int[] currPos = block.getPos();
@@ -280,6 +283,12 @@ public class LeftPanelModel {
 		}, 0, 3000);
 	}
 	
+	
+	public void goDown() {
+		boolean canGoDown = true;
+	
+		
+	}
 	
 	
 	
