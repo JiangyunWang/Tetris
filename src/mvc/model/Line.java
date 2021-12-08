@@ -28,23 +28,25 @@ public class Line extends AShape{
     }
     
     public int[][] currLook(){
-   	 int[][] currLook = null;
+   	 int[][] currLook = new int[5][2];
    	 int rotation = this.getRotation();
 	    int[] center = this.getCenter();
-		int x = center[0];
-		int y = center[1];
-		
 		
 		/*
 		 * 11011
 		 */
 		if(rotation == 0 || rotation == 2) {
-			currLook = new int[1][5];
-			currLook[x][y] = 1;
-			currLook[x][y-1] =1;
-			currLook[x][y-2] = 1;
-			currLook[x][y+1] = 1;
-			currLook[x][y+2] = 1;
+			currLook[0][0] = 0;
+			currLook[0][1] = -2;
+			currLook[1][0] = 0;
+			currLook[1][1] = -1;
+			//center
+			currLook[2][0] = 0;
+			currLook[2][1] = 0;
+			currLook[3][0] = 0;
+			currLook[3][1] = 1;
+			currLook[4][0] = 0;
+			currLook[4][1] = 2;
 		}
 		/*
 		 * 1
@@ -54,12 +56,17 @@ public class Line extends AShape{
 		 * 1
 		 */
 		else { //if (rotation == 1 || rotation == 3) 
-			currLook = new int[5][1];
-			currLook[x][y] = 1;
-			currLook[x-1][y] =1;
-			currLook[x-2][y] =1;
-			currLook[x+1][y] = 1;
-			currLook[x+2][y] = 1;
+			currLook[0][0] = -2;
+			currLook[0][1] = 0;
+			currLook[1][0] = -1;
+			currLook[1][1] = 0;
+			//center
+			currLook[2][0] = 0;
+			currLook[2][1] = 0;
+			currLook[3][0] = 1;
+			currLook[3][1] = 0;
+			currLook[4][0] = 2;
+			currLook[4][1] = 0;
 		}
 		
 		

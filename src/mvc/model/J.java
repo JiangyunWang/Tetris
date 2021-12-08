@@ -30,32 +30,44 @@ public class J extends AShape{
     }
 
     public int[][] currLook(){
-    	// this is the relative position of currShape
+    	/* this is the relative position of currShape, cneter is 0,0, and 0 is X 1 is Y
+    	for currlook: first array is the size of points that current block has
+    	the position are set from left to right, up to down
+    	*/
 	    int[][] currLook = new int[4][2];
 	    int rotation = this.getRotation();
 	    int[] center = this.getCenter();
-		int x = 2;
-		int y = 1;
 	    /*
 		 * 	 1
 		 * 	 1
 		 * 1 0
 		 */
 		if(rotation == 0) {
-			currLook[x][y] = 1;
-			currLook[x][y-1] = 1;
-			currLook[x-1][y] = 1;
-			currLook[x-2][y] = 1;
+			currLook[0][0] = -2;
+			currLook[0][1] = 0;
+			currLook[1][0] = -1;
+			currLook[1][1] = 0;
+			currLook[2][0] = 0;
+			currLook[2][1] = -1;
+			//center
+			currLook[3][0] = 0;
+			currLook[3][1] = 0;
 		}
 		/*
 		 * 1
 		 * 0 1 1 
 		 */
 		else if (rotation == 1) {
-			currLook[x][y] = 1;
-			currLook[x-1][y] = 1;
-			currLook[x][y +1] = 1;
-			currLook[x][y+2] = 1;
+			currLook[0][0] = -1;
+			currLook[0][1] = 0;
+			//center
+			currLook[1][0] = 0;
+			currLook[1][1] = 0;
+			
+			currLook[2][0] = 0;
+			currLook[2][1] = 1;
+			currLook[3][0] = 0;
+			currLook[3][1] = 2;
 			
 		}
 		/*
@@ -64,10 +76,16 @@ public class J extends AShape{
 		 * 1
 		 */
 		else if (rotation == 2) {
-			currLook[x][y] = 1;
-			currLook[x][y+1] = 1;
-			currLook[x+1][y] = 1;
-			currLook[x+2][y] =1;
+			//center
+			currLook[0][0] = 0;
+			currLook[0][1] = 0;
+			
+			currLook[1][0] = 0;
+			currLook[1][1] = 1;
+			currLook[2][0] = 1;
+			currLook[2][1] = 0;
+			currLook[3][0] = 2;
+			currLook[3][1] = 0;
 		}
 		
 		
@@ -76,10 +94,15 @@ public class J extends AShape{
 		 * 	   1
 		 */
 		else {
-			currLook[x][y] = 1;
-			currLook[x][y-1] = 1;
-			currLook[x][y-2] = 1;
-			currLook[x+1][y] =1;
+			currLook[0][0] = 0;
+			currLook[0][1] = -2;
+			currLook[1][0] = 0;
+			currLook[1][1] = -1;
+			//center
+			currLook[2][0] = 0;
+			currLook[2][1] = 0;
+			currLook[3][0] = 1;
+			currLook[3][1] = 0;
 		}
 		return currLook;
     }
