@@ -55,9 +55,5 @@ public class LeftPanel extends JPanel implements ActionListener {
 
 	}
 
-//	private void DrawBlockes() {
-//
-//		for(int i = )
-//	}
 }
 
