@@ -133,6 +133,8 @@ public class GameFrame extends JFrame {
         //2.  left most has block
         if (block)
 
+        	
+        	
     }
 
 }

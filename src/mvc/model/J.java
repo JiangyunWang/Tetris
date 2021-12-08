@@ -30,7 +30,8 @@ public class J extends AShape{
     }
 
     public int[][] currLook(){
-	    int[][] currLook = new int[3][2];
+    	// this is the relative position of currShape
+	    int[][] currLook = new int[4][2];
 	    int rotation = this.getRotation();
 	    int[] center = this.getCenter();
 		int x = 2;
@@ -82,4 +83,5 @@ public class J extends AShape{
 		}
 		return currLook;
     }
+    
 }

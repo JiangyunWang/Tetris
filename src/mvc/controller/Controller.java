@@ -19,8 +19,6 @@ public class Controller {
 
 
     public Controller() {
-
-
         this.gf = new GameFrame();
         this.rpm = new RightPanelModel();
         this.nexShape = rpm.getBlock();

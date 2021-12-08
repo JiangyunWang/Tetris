@@ -241,8 +241,8 @@ public class LeftPanelModel {
 	}
 	
 	public void moveRight() {
-		int rotation = block.getRotation();
-		switch rotation
+		
+		
 		/*	for (int i = 0; i < actPoints.length; i++) {
 				int newX=actPoints[i].x+moveX;
 				int newY=actPoints[i].y+moveY;
@@ -279,4 +279,8 @@ public class LeftPanelModel {
 			}
 		}, 0, 3000);
 	}
+	
+	
+	
+	
 }
