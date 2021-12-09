@@ -16,40 +16,63 @@ public class RightPanelModel {
 		this.score = 0;
 
 		rnd = new Random(); // YIHan for TESTING****************************
-		this.block  = generateShape();
+		generateShape();
 	}
 
 	public RightPanelModel(String name, int score) {
 		this.line = 0;
 		this.name = name;
 		this.score = score;
-		this.block  = generateShape();
+		generateShape();
 	}
 
-	public IShape generateShape() {
-		int shapeInt = rnd.nextInt(7);
+	public void generateShape() {
+		int shapeInt = (int) (Math.random() * 105);
+		if(shapeInt < 15) {
+			block = new S();
+		}
+		else if (shapeInt < 30) {
+			block = new Z();
+		}
+		else if(shapeInt <45) {
+			block = new T();
+		}
+		else if(shapeInt < 60) {
+			block = new J();
+		}
+		else if(shapeInt < 75) {
+			block = new L();
+		}
+		else if(shapeInt < 90) {
+			block = new Line();
+		}
+		else {
+			block = new Square();
+		}
+		/*int shapeInt = rnd.nextInt(7);
 		switch (shapeInt) {
 			case 0:
-				return new S();
+				block = new S();
 			case 1:
-				return new Z();
+				block = new Z();
 			case 2:
-				return new T();
+				block = new T();
 			case 3:
-				return new J();
+				block = new J();
 			case 4:
-				return new L();
+				block = new L();
 			case 5:
-				return new Line();
+				block = new Line();
 			case 6:
-				return new Square();
+				block = new Square();
 			default:
 				throw new IllegalStateException("Invalid shape int");
-		}
+		}*/
 	}
 
 	public int getLine() {
-		return line;}
+		return line;
+	}
 	  
 	public String getName() {
 		return name;
@@ -58,9 +81,10 @@ public class RightPanelModel {
 		return score;
 	}
 	//Block getter setter
-	public void setLine(int line) {
+	public void setLineNoStatic(int line) {
 		this.line = line;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}

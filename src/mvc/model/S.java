@@ -3,8 +3,8 @@ package mvc.model;
 import java.awt.*;
 
 public class S extends AShape{
-    public S(Color color, int[] pos, int rotate) {
-        super(ShapeType.S, color, pos, rotate);
+    public S(Color color, int rotate) {
+        super(ShapeType.S, color, rotate);
     }
     public S() {
         super(ShapeType.S);
@@ -30,18 +30,14 @@ public class S extends AShape{
     public int[][] currLook(){
       	 int[][] currLook = new int[4][2];
    	    int rotation = this.getRotation();
-   	    int[] center = this.getCenter();
-   		int x = 1;
-   		int y = 1;
-   		
-   		
+
    		/*    1 1
 		 *  1 0
 		 */
 		if(rotation == 0) {
-			currLook[0][0] = 1;
+			currLook[0][0] = -1;
 			currLook[0][1] = 0;
-			currLook[1][0] = 1;
+			currLook[1][0] = -1;
 			currLook[1][1] = 1;
 			
 			currLook[2][0] = 0;

@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class T extends AShape{
     public T(Color color, int[] pos, int rotate) {
-        super(ShapeType.T, color, pos, rotate);
+        super(ShapeType.T, color, rotate);
     }
     public T() {
         super(ShapeType.T);
@@ -32,21 +32,28 @@ public class T extends AShape{
     }
     
     public int[][] currLook(){
-      	 int[][] currLook = new int[3][2];
+      	 int[][] currLook = new int[4][2];
    	    int rotation = this.getRotation();
-   	    int[] center = this.getCenter();
-   		int x = 0;
-   		int y = 1;
+   	 
+  
    		
    		/*
    		 *  1 0 1
    		 *    1
    		 */
    		if(rotation == 0) {
-   			currLook[x][y] = 1; 
-			currLook[x][y-1] = 1; 
-			currLook[x][y+1] = 1; 
-			currLook[x+1][y] = 1; 
+   			currLook[0][0] = 0;
+			currLook[0][1] = -1;
+			
+			currLook[1][0] = 0;
+			currLook[1][1] = 0;
+			
+			currLook[2][0] = 0;
+			currLook[2][1] = 1;
+			
+			currLook[3][0] = 1;
+			currLook[3][1] = 0;
+			
 		}
    		/*
    		 *    1
@@ -54,20 +61,34 @@ public class T extends AShape{
    		 *    1
    		 */
 		else if (rotation == 1) {
-			currLook[x][y] = 1; 
-			currLook[x][y-1] = 1; 
-			currLook[x+1][y] = 1; 
-			currLook[x-1][y] = 1; 
+			currLook[0][0] = -1;
+			currLook[0][1] = 0;
+			
+			currLook[1][0] = 0;
+			currLook[1][1] = -1;
+			
+			currLook[2][0] = 0;
+			currLook[2][1] = 0;
+			
+			currLook[3][0] = 1;
+			currLook[3][1] = 0;
 		}
    		/* 
    		 *    1
    		 *  1 0 1
    		 */
 		else if (rotation == 2) {
-			currLook[x][y] = 1; 
-			currLook[x-1][y] = 1; 
-			currLook[x][y-1] = 1; 
-			currLook[x][y+1] = 1; 
+			currLook[0][0] = -1;
+			currLook[0][1] = 0;
+			
+			currLook[1][0] = 0;
+			currLook[1][1] = -1;
+			
+			currLook[2][0] = 0;
+			currLook[2][1] = 0;
+			
+			currLook[3][0] = 0;
+			currLook[3][1] = 1;
 		}
    		
    		/*
@@ -76,10 +97,17 @@ public class T extends AShape{
    		 *   1
    		 */
 		else {
-			currLook[x][y] = 1; 
-			currLook[x-1][y] = 1; 
-			currLook[x+1][y] = 1; 
-			currLook[x][y+1] = 1; 
+			currLook[0][0] = -1;
+			currLook[0][1] = 0;
+			
+			currLook[1][0] = 0;
+			currLook[1][1] = 0;
+			
+			currLook[2][0] = 0;
+			currLook[2][1] = 1;
+			
+			currLook[3][0] = 1;
+			currLook[3][1] = 0;
 		}
    		return currLook;
        }

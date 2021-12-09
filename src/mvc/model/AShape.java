@@ -10,18 +10,17 @@ public abstract class AShape implements IShape {
     int[] pos;
 
     // pos[0] = changes in x, pos[1] are changes in y
-    public AShape(ShapeType type, Color color, int[] pos, int rotate) {
-        if (type == null || color == null || pos == null) {
+    public AShape(ShapeType type, Color color,  int rotate) {
+        if (type == null || color == null ) {
             throw new IllegalStateException("Invalid shape parameter");
-        } else if (pos[1] < 0 ||rotate < 0 ) {
+        } else if (rotate < 0 ) {
             throw new IllegalStateException("parameter can't be negative");
         }
         this.type = type;
         this.color = color;
         this.center = pos;
         this.rotate = rotate;
-        this.pos = pos;
-    }
+    } //********************for tesing***********
 
     public AShape(ShapeType type) {
         this.type = type;
@@ -40,19 +39,29 @@ public abstract class AShape implements IShape {
 //    }
 
     @Override
-    public void setPosX(int x) {
-        this.center[0] += x;
+    public void setX(int x) {
+        this.center[0] = x;
     }
 
     @Override
-    public void setPosY(int y) {
-        this.center[1] += y;
+    public void setY(int y) {
+        this.center[1] = y;
     }
 
     @Override
     public void setRotate() {
     	// need to set to 0 after 3
         this.rotate += 1;
+        if(rotate ==4) {
+        	rotate = 0;
+        }
+    }
+    public void reRotate() {
+    	// need to set to 0 after 3
+        this.rotate -= 1;
+        if(rotate == -1) {
+        	rotate = 3;
+        }
     }
 
     @Override
@@ -68,6 +77,7 @@ public abstract class AShape implements IShape {
         temp[1] = this.center[1];
         return temp;
     }
+  
 
     @Override
     public int getRotation() {

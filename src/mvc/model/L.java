@@ -3,8 +3,8 @@ package mvc.model;
 import java.awt.*;
 
 public class L extends AShape{
-    public L(Color color, int[] pos, int rotate) {
-        super(ShapeType.L, color, pos, rotate);
+    public L(Color color,  int rotate) {
+        super(ShapeType.L, color, rotate);
     }
     public L() {
         super(ShapeType.L);
@@ -30,9 +30,9 @@ public class L extends AShape{
     }
     
     public int[][] currLook(){
-    	 int[][] currLook = new int[3][2];
+    	 int[][] currLook = new int[4][2];
  	    int rotation = this.getRotation();
- 	    int[] center = this.getCenter();
+ 	   
  		
     	/* 
 		 *  1

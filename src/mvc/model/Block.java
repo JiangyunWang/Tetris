@@ -14,8 +14,10 @@ public class Block {
             case SQUARE -> shape = new Square();
             default -> throw new IllegalStateException("Invalid shape type");
         }
-        shape.setPosX(movement[0]);
-        shape.setPosY(movement[1]);
+        shape.setX(0);
+        shape.setY(0);
+        //shape.setPosX(movement[0]);
+        //shape.setPosY(movement[1]);
     }
 
     public AShape getShape() {
@@ -28,7 +30,7 @@ public class Block {
      public void setMovement(int x, int y) {
         movement[0]=x;
         movement[1]=y;
-        shape.setPosX(movement[0]);
-        shape.setPosY(movement[1]);
+        //shape.setPosX(movement[0]);
+        //shape.setPosY(movement[1]);
      }
 }

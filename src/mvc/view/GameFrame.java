@@ -32,10 +32,7 @@ public class GameFrame extends JFrame {
 //    RightPanelModel rpm;
 //    LeftPanelModel lpm;
     
-    public GameFrame() {
-    	
-//    	rpm = new RightPanelModel();
-//    	lpm = new LeftPanelModel();
+    public GameFrame(RightPanelModel rpm, LeftPanelModel lpm) { // left panel should have medel
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Tetris Battle");
@@ -44,10 +41,11 @@ public class GameFrame extends JFrame {
         this.setResizable(false);
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(creatMenus());
-//      Panel = new RightPanel(new BorderLayout(), rpm);
- //     lPanel = new LeftPanel(lpm);
-//      this.add(lPanel,BorderLayout.CENTER);
-//      this.add(Panel,BorderLayout.EAST);
+        //****for test 
+        rPanel = new RightPanel(new BorderLayout(), rpm);
+        lPanel = new LeftPanel(lpm);
+        this.add(lPanel,BorderLayout.CENTER);
+        this.add(rPanel,BorderLayout.EAST);
         setJMenuBar(menuBar);
     }
 
@@ -89,6 +87,8 @@ public class GameFrame extends JFrame {
     public LeftPanel getlPanel(){
         return this.lPanel;
     }
+    
+   
     /*
     public void setBoard(int[][] map) {
         this.board = map;
@@ -137,5 +137,9 @@ public class GameFrame extends JFrame {
         */
         	
 
+    public void repaint() {
+    	 lPanel.repaint();
+    	 rPanel.refresh();
+    }
 
 }

@@ -7,7 +7,6 @@ import java.util.TimerTask;
 import javax.swing.SwingUtilities;
 
 public class LeftPanelModel {
-	// leftPanel should have next block in the beginning
 	private static final int size = 25;
 	private static int yunit = 12;
 	private static int xunit = 24;
@@ -22,13 +21,13 @@ public class LeftPanelModel {
 	int score = 0; // add or set
 	
 	
-	boolean needNewBlock;
-	
 	/* yihan for testing ***************
 		*/
 	//**************有图行了, 开始往下掉*****
 	
+	private RightPanelModel rpm;	
 	int speed = 1;
+	
 	public void speedUp() {
 		this.speed+=5;
 	}
@@ -39,19 +38,22 @@ public class LeftPanelModel {
 	
 	// ****************end of testing
 	
-
-	
-	
-	public LeftPanelModel (IShape block){
+	public LeftPanelModel (RightPanelModel rpm){
+		this.rpm = rpm;
 		map = new int[xunit][yunit];
-		/* for(int i = 0; i < xunit; ++i) {
-			 for (int j = 0; j < yunit; ++j) {
-				 map[i][j] = 0;
-			 }
-		 }*/
+		block = rpm.getBlock();
+		rpm.generateShape();
 		gameOver = false;
-		this.block = block;
+		
 	 }
+	
+	public void setBlock(IShape block) {
+		this.block = block;
+		speedBack();// **************test***********
+	}
+	public IShape getBlock() {
+		return block;
+	}
 	
 	public int getScore() {
 		return score;
@@ -65,7 +67,6 @@ public class LeftPanelModel {
 		this.timer2 = timer2;
 	}
 
-	//private static int[][] inmoveMap;
 	public int getXunit() {
 		return xunit;
 	}
@@ -113,12 +114,7 @@ public class LeftPanelModel {
 	public void setMap(int[][] map) {
 		LeftPanelModel.map = map;
 	}
-	
-	public boolean getNeedNewBlock() {
-		return needNewBlock;
-	}
 
-	// need to check gameover
 	
 	public void eraseLine() { // i = row, j = column 
 		int[][] temp = new int[xunit][yunit];
@@ -143,65 +139,14 @@ public class LeftPanelModel {
 			}
 		
 		}
-		//**********controller.setsoreS
-		//communicate with rpm
-		//to be check!!!!!!!!!!!!!!!!!!!!
+		
+		rpm.setScore(score);
 		map = temp;
+		gameOver();
 		
 	}
 	
-	public void setBlock(IShape block) {
-		this.block = block;
-		speedBack();// **************test***********
-	}
-	public IShape getBlock() {
-		return block;
-	}
-	// block become a part of map
-	//********************need update*********************************
-	
-	public void updateMap() {
-		int[][] currLook = block.currLook();
-		int[] currPos = block.getPos();
-
-		boolean shouldChangeToMap = false;
-		for(int i =0; i < currLook.length;++i) {
-			for (int j =0; j < currLook[i].length;++j) {
-				if(currLook[i][j] == 1) {
-					
-					if(i+currPos[1] == xunit-1) {
-						shouldChangeToMap = true;
-						break;
-					}
-					else if(map[i+1+currPos[0]][j] == 1) {
-						shouldChangeToMap = true;
-						break;
-					}
-				}
-			}
-			if(shouldChangeToMap) {
-				break;
-			}
-		}
-		if(shouldChangeToMap) {
-			for(int i =0; i < currLook.length;++i) {
-				for (int j =0; j < currLook[i].length;++j) {
-					if(currLook[i][j] == 1) {
-						map[i][j] = 1;
-					}
-				}
-			}
-			this.needNewBlock = true;
-			//!!!!!!!!!!!!
-			//this.block = rpm.getBlock();// need get next block in right panel model
-			// !!!!!!!!!!!!!!need timer here???
-		}
-		this.eraseLine(); 
-		//*******shape = controller******************************************
-		//gameOver(); //do we need to check here??
-	}
-
-	public boolean gameOver() {
+	public void gameOver() {
 		
 		for(int i = 0; i < yunit; ++i) {
 			if(map[0][i] == 1) {
@@ -209,12 +154,9 @@ public class LeftPanelModel {
 				//gameJpanel.setOverFlag(true);
 			}
 		}
-		// need to call gameover 
-		return gameOver;
 	}
 	
 	// map will grow after few second
-	// need check how this works!!!!!!!!!!!!!!!!!!!!!!!*****************
 	public void autoUp(){
 		timer2 = new Timer();
 
@@ -244,29 +186,58 @@ public class LeftPanelModel {
 	}
 	
 	public void moveRight() {
+		if(gameOver) {
+			return;
+		}
+		int[][] currLook = block.currLook();
+		int[] center = block.getCenter();
+		boolean isValid = true;
 		
+		for(int i =0; i < currLook.length;++i) {
+			int currX= currLook[i][0] + center[0];
+			int currY = currLook[i][1] + center[1];
+			if(currY+1 >= yunit) {
+				isValid = false;
+				break;
+			}
+			else if(map[currX][currY+1] == 1) {
+				isValid = false;
+				break;
+			}
+		}
+		if(isValid) {
+			block.setY(center[1]+1);
+		}
 		
-		/*	for (int i = 0; i < actPoints.length; i++) {
-				int newX=actPoints[i].x+moveX;
-				int newY=actPoints[i].y+moveY;
-				if (isOver(newX, newY,blockShow)) {
-					return false;
-				}
-			}
-			for(int i=0;i<actPoints.length;i++){
-				actPoints[i].x+=moveX;
-				actPoints[i].y+=moveY;
-			}
-			return true;*/
-		block.moveRight(); // we can just use set center in model???!!!!!!!!!!S
 		
 	}
 	public void moveLeft() {
-		block.moveLeft(); // we can jusr use set center in model!!!S
-	}
-	public void isValid() {
+		if(gameOver) {
+			return;
+		}
+		int[][] currLook = block.currLook();
+		int[] center = block.getCenter();
+		boolean isValid = true;
+		//have to initialize
+
+		for(int i =0; i < currLook.length;++i) {
+			int currX= currLook[i][0] + center[0];
+			int currY = currLook[i][1] + center[1];
+			if(currY-1 < 0) {
+				isValid = false;
+				break;
+			}
+			else if(map[currX][currY-1] == 1) {
+				isValid = false;
+				break;
+			}
+		}
+		if(isValid) {
+			block.setY(center[1]-1);
+		}
 		
 	}
+
 	//!!!!!!!
 	public void autoDown() {
 		timer1 = new Timer();
@@ -277,19 +248,119 @@ public class LeftPanelModel {
 			public void run()
 			{
 				
-				block.goDown();;
+				goDown();;
 				
 			}
 		}, 0, 3000);
 	}
 	
-	
-	public void goDown() {
-		boolean canGoDown = true;
+
+	// block become a part of map
+	public void goDown() {	
+		if(gameOver) {
+			return;
+		}
+		int[][] currLook = block.currLook();
+		int[] center = block.getCenter();
+		boolean shouldChangeToMap = false;
+		int currX = center[0];
+		int currY=center[1];
+		for(int i =0; i < currLook.length;++i) {
+			currX= currLook[i][0] + center[0];
+			currY = currLook[i][1] + center[1];
+			
+			if(currX+1 == xunit) {
+				shouldChangeToMap = true;
+				
+				break;
+			}
+			else if(map[currX+1][currY] == 1) {
+				shouldChangeToMap = true;
+				break;
+			}
+			
+		}
+		System.out.println("shouldchage: ");
+		System.out.println(shouldChangeToMap);
+		for(int i =0; i < currLook.length;++i) {
+			currX= currLook[i][0] + center[0];
+			currY = currLook[i][1] + center[1];
+			System.out.println("x is" + 	currX + " Y is" + currY);
+		}
+		
+		//System.out.println("center is" + center[0] + "center Y is" + center[1]);
+		
+		if(shouldChangeToMap) {
+			changetoMap();
+		}
+		else {
+			block.setX(center[0]+1);
+		}
 	
 		
 	}
 	
+	public void changetoMap() {
+		int[]center = block.getCenter();
+		int[][]currLook = block.currLook();
+		for(int[] pair: currLook) {
+			map[pair[0]+center[0]][pair[1]+center[1]] = 1;
+		}
+		this.block = rpm.getBlock();
+		rpm.generateShape();
 	
+		this.eraseLine(); 
+		if(gameOver) {
+		//**************************need somehome tell view
+		}
+	
+		/*	if(block.getType() == ShapeType.J) {
+		System.out.println("j ");
+	}
+		else if(block.getType() == ShapeType.L) {
+			System.out.println("j ");
+		}
+		else if(block.getType() == ShapeType.LINE) {
+			System.out.println("line ");
+		}
+			else if(block.getType() == ShapeType.S) {
+			System.out.println("S ");
+
+		}else if(block.getType() == ShapeType.SQUARE) {
+		System.out.println("Squar ");
+
+	}
+		else if(block.getType() == ShapeType.Z) {
+		System.out.println("Z");
+
+		}
+		else if(block.getType() == ShapeType.T) {
+		System.out.println("T ");
+}*/
+	
+	}
+	
+	public void setRotate() {
+		boolean success = true;
+		block.setRotate();
+		int [][] idx = block.currLook();
+		int x = block.getCenter()[0], y = block.getCenter()[1];
+		
+		for(int[] pair: idx) {
+			if(x+pair[0]>=0 && x+pair[0]<=xunit-1 && y+pair[1] >=0 &&  y+pair[1] <=yunit-1) {
+				if(map[x+pair[0]][y+pair[1]] == 1) {
+					success = false;
+					break;
+				}
+			}
+			else {
+				success = false;
+			}
+			
+		}
+		if(!success) {
+			block.reRotate();
+		}
+	}
 	
 }

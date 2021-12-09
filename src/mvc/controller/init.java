@@ -7,21 +7,21 @@ import mvc.model.RightPanelModel;
 
 public class init {
 
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 
 		//initialize
 		boolean running = true;
-		GameFrame GameFrame = new GameFrame(/*total model*/);
-	    GameFrame.setVisible(true);
-		Controller c = new Controller(); //*******yihan********
+		//GameFrame GameFrame = new GameFrame();
+	   // GameFrame.setVisible(true);
+		/*Controller c = new Controller(); 
 		while(true) {
 			if(running == false) {
 				break;
 			}
-			c.move();
+			//c.move();
 			
 		}
-	}
+	}*/
 	
 
 	  

@@ -3,8 +3,8 @@ package mvc.model;
 import java.awt.*;
 
 public class Square extends AShape{
-    public Square(Color color, int[] pos, int rotate) {
-        super(ShapeType.SQUARE, color, pos, rotate);
+    public Square(Color color, int rotate) {
+        super(ShapeType.SQUARE, color, rotate);
     }
     public Square() {
         super(ShapeType.SQUARE);
@@ -29,8 +29,8 @@ public class Square extends AShape{
     public int[][] currLook(){
       	 int[][] currLook = new int[4][2];
    	    int rotation = this.getRotation();
-   	    int[] center = this.getCenter();
-   		//**************to be modify****
+   	   
+   		
    		
    		/*
    		 * 0 1
