@@ -3,8 +3,9 @@ package mvc.model;
 import java.awt.*;
 
 public class T extends AShape{
-    public T(Color color, int[] pos, int rotate) {
-        super(ShapeType.T, color, rotate);
+    public T(Color color) {
+        super(ShapeType.T, color);
+        initCenter();
     }
     public T() {
         super(ShapeType.T);

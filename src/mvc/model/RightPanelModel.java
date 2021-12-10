@@ -1,5 +1,6 @@
 package mvc.model;
 
+import java.awt.Color;
 import java.util.List;
 import java.util.Random;
 
@@ -8,6 +9,7 @@ public class RightPanelModel {
 	private String name = "anonymity";
 	private int score = 0;
 	private IShape block;
+	private IShape nextBlock;
 	private Random rnd;
 
 	public RightPanelModel() {
@@ -15,8 +17,10 @@ public class RightPanelModel {
 		this.name = "anonymity";
 		this.score = 0;
 
-		rnd = new Random(); // YIHan for TESTING****************************
+		rnd = new Random(); 
 		generateShape();
+		setCurr();
+		
 	}
 
 	public RightPanelModel(String name, int score) {
@@ -24,30 +28,31 @@ public class RightPanelModel {
 		this.name = name;
 		this.score = score;
 		generateShape();
+		setCurr();
 	}
 
 	public void generateShape() {
 		int shapeInt = (int) (Math.random() * 105);
 		if(shapeInt < 15) {
-			block = new S();
+			nextBlock = new S(Color.pink);
 		}
 		else if (shapeInt < 30) {
-			block = new Z();
+			nextBlock = new Z(Color.blue);
 		}
 		else if(shapeInt <45) {
-			block = new T();
+			nextBlock = new T(Color.black);
 		}
 		else if(shapeInt < 60) {
-			block = new J();
+			nextBlock = new J(Color.gray);
 		}
 		else if(shapeInt < 75) {
-			block = new L();
+			nextBlock = new L(Color.magenta);
 		}
 		else if(shapeInt < 90) {
-			block = new Line();
+			nextBlock = new Line(Color.green);
 		}
 		else {
-			block = new Square();
+			nextBlock = new Square(Color.red);
 		}
 		/*int shapeInt = rnd.nextInt(7);
 		switch (shapeInt) {
@@ -68,8 +73,12 @@ public class RightPanelModel {
 			default:
 				throw new IllegalStateException("Invalid shape int");
 		}*/
+	
 	}
-
+	public void setCurr() {
+		block = nextBlock;
+		generateShape();
+	}
 	public int getLine() {
 		return line;
 	}
@@ -94,6 +103,8 @@ public class RightPanelModel {
 	public IShape getBlock() {
 		return block;
 	}
-	
+	public IShape getNextBlock() {
+		return nextBlock;
+	}
 
 }

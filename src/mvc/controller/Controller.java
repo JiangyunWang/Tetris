@@ -28,15 +28,12 @@ public class Controller {
     public Controller() {
        
         this.rpm = new RightPanelModel();
-        this.lpm = new LeftPanelModel(rpm);
+        this.lpm = new LeftPanelModel(rpm, this);
         this.gf = new GameFrame(rpm,lpm);
         this.map = lpm.getMap();
         gf.setVisible(true);
         this.currShape = lpm.getBlock();
-//        gf.setBoard(map);
-//        gf.setBlock(nexShape); // YIHAN correct error************
         
-        // ******* yihan ****************
        
       class MyListener implements KeyListener{
 
@@ -66,7 +63,7 @@ public class Controller {
                                 break;
 
                         }
-			     gf.repaint();			
+			     gf.refresh();			
 			}
 
           @Override
@@ -80,37 +77,38 @@ public class Controller {
         }
         this.gf.addKeyListener(new MyListener());
     }
-    public LeftPanelModel getlpm() {
-    	return lpm;
+
+    public void move() {
+    	System.out.println("before loop");//*******************
+    	
+    	Timer timer1 = new Timer();
+    	timer1.schedule(new TimerTask()
+    		{
+    			@Override
+    			public void run()
+    			{
+    			
+    				lpm.goDown();
+    				gf.refresh();
+    				if(lpm.getGameOver()) {
+    					timer1.cancel();
+    					System.out.println("over!!!");
+    				}
+    			}
+    		}, 1000, 1000);
     }
     
-    public void start(int[][] map, IShape shape) {
+    public void refreshRight() {
+    	gf.refresh();
+    }
+    
+    
+   /* public void start(int[][] map, IShape shape) {
         for (int i=0; i<map.length; i++) {
             for(int j=0; j<map[0].length; j++) {
 
             }
         }
-    }
-
-    public static void main(String[] args) {
-    	//lpm.autoDown();
-    	Controller c = new Controller();
-    	
-    	while(c.getlpm().getGameOver() != false) {
-    		Timer timer1 = new Timer();
-
-        	final ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
-            ses.scheduleWithFixedDelay(new Runnable() {
-                @Override
-                public void run() {
-                	 System.out.println(1);
-                }
-            }, 0, 1, TimeUnit.SECONDS);
-    	}
-    	
-    }
-
-    
-    
+    }*/
 
 }

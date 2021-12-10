@@ -3,8 +3,9 @@ package mvc.model;
 import java.awt.*;
 
 public class Line extends AShape{
-    public Line(Color color,  int rotate) {
-        super(ShapeType.LINE, color, rotate);
+    public Line(Color color) {
+        super(ShapeType.LINE, color);
+        initCenter();
     }
     public Line() {
         super(ShapeType.LINE);

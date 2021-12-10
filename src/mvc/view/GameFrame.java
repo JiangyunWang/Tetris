@@ -137,7 +137,8 @@ public class GameFrame extends JFrame {
         */
         	
 
-    public void repaint() {
+    public void refresh() {
+    	
     	 lPanel.repaint();
     	 rPanel.refresh();
     }

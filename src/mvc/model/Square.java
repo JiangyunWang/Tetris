@@ -3,8 +3,9 @@ package mvc.model;
 import java.awt.*;
 
 public class Square extends AShape{
-    public Square(Color color, int rotate) {
-        super(ShapeType.SQUARE, color, rotate);
+    public Square(Color color) {
+        super(ShapeType.SQUARE, color);
+        initCenter();
     }
     public Square() {
         super(ShapeType.SQUARE);
@@ -36,7 +37,7 @@ public class Square extends AShape{
    		 * 0 1
    		 * 1 1
    		 */
-   		if(rotation == 0) {
+ 
    		//center
    			currLook[0][0] = 0;
 			currLook[0][1] = 0;
@@ -49,11 +50,10 @@ public class Square extends AShape{
 			
 			currLook[3][0] = 1;
 			currLook[3][1] = 1;
-		}
    		/*
    		 * 1 0
    		 * 1 1
-   		 */
+   		
 		else if (rotation == 1) {
 			currLook[0][0] = 0;
 			currLook[0][1] = -1;
@@ -70,7 +70,7 @@ public class Square extends AShape{
    		/* 
    		 * 1 1 
    		 * 1 0
-   		 */
+  
 		else if (rotation == 2) {
 			currLook[0][0] = -1;
 			currLook[0][1] = -1;
@@ -87,7 +87,7 @@ public class Square extends AShape{
    		/*
    		 * 1 1
    		 * 0 1
-   		 */
+  
 		else {
 			currLook[0][0] = -1;
 			currLook[0][1] = 0;
@@ -100,7 +100,7 @@ public class Square extends AShape{
 			
 			currLook[3][0] = 0;
 			currLook[3][1] = 1;
-		}
+		}*/
    		return currLook;
        }
 }

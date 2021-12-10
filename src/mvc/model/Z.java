@@ -3,8 +3,9 @@ package mvc.model;
 import java.awt.*;
 
 public class Z extends AShape{
-    public Z(Color color, int[] pos, int rotate) {
-        super(ShapeType.Z, color, rotate);
+    public Z(Color color) {
+        super(ShapeType.Z, color);
+        initCenter();
     }
     public Z() {
         super(ShapeType.Z);
@@ -37,7 +38,7 @@ public class Z extends AShape{
    		 * 1 1 
    		 *   0 1
    		 */
-   		if(rotation == 0) {
+   		if(rotation == 0 || rotation == 2) {
    			currLook[0][0] = -1;
 			currLook[0][1] = -1;
 			
@@ -55,7 +56,7 @@ public class Z extends AShape{
    		 *  0 1
    		 *  1
    		 */
-		else if (rotation == 1) {
+		else if (rotation == 1 || rotation == 3) {
 			currLook[0][0] = -1;
 			currLook[0][1] = 1;
 			
@@ -72,7 +73,7 @@ public class Z extends AShape{
    		 *  1 0
    		 *    1 1
    		 */
-		else if (rotation == 2) {
+		/* else if (rotation == 2) {
 			currLook[0][0] = 0;
 			currLook[0][1] = -1;
 			
@@ -89,7 +90,7 @@ public class Z extends AShape{
    		 *    1
    		 *  1 0
    		 *  1
-   		 */
+   		 
 		else {
 			currLook[0][0] = -1;
 			currLook[0][1] = 0;
@@ -102,7 +103,7 @@ public class Z extends AShape{
 			
 			currLook[3][0] = 1;
 			currLook[3][1] = -1;
-		}
+		}*/
    		return currLook;
        }
 }

@@ -6,6 +6,8 @@ import java.util.TimerTask;
 
 import javax.swing.SwingUtilities;
 
+import mvc.controller.Controller;
+
 public class LeftPanelModel {
 	private static final int size = 25;
 	private static int yunit = 12;
@@ -13,17 +15,19 @@ public class LeftPanelModel {
 	private static int ymax = size * 12;
 	private static int xmax = size * 24;
 	
+	private Controller c;
 	Boolean gameOver;
 	private IShape block;
-	private static int[][] map;
+	private int[][] map;
 	private Timer timer2;
 	private Timer timer1;
+	
+	boolean isAttacked;
 	int score = 0; // add or set
 	
 	
 	/* yihan for testing ***************
 		*/
-	//**************有图行了, 开始往下掉*****
 	
 	private RightPanelModel rpm;	
 	int speed = 1;
@@ -38,15 +42,19 @@ public class LeftPanelModel {
 	
 	// ****************end of testing
 	
-	public LeftPanelModel (RightPanelModel rpm){
+	public LeftPanelModel (RightPanelModel rpm, Controller c){
 		this.rpm = rpm;
 		map = new int[xunit][yunit];
 		block = rpm.getBlock();
-		rpm.generateShape();
 		gameOver = false;
+		isAttacked = false;
+		this.c = c;
 		
 	 }
-	
+
+	public void setattack(boolean isAttacked) {
+		
+	}
 	public void setBlock(IShape block) {
 		this.block = block;
 		speedBack();// **************test***********
@@ -112,11 +120,13 @@ public class LeftPanelModel {
 	}
 
 	public void setMap(int[][] map) {
-		LeftPanelModel.map = map;
+		this.map = map;
 	}
 
 	
 	public void eraseLine() { // i = row, j = column 
+		System.out.println("enterErase"); // *******************************
+		//!!!!!!!!!!!!error goes here
 		int[][] temp = new int[xunit][yunit];
 		int cnt = xunit -1;
 		
@@ -125,23 +135,33 @@ public class LeftPanelModel {
 				if(map[i][j] == 0) {
 					temp[cnt] = map[i];
 					cnt--;
+					break;
+					
+				}
+				else {
 					++score;
 				}
 			}
-			if(score < 2) {
-				
-			}
-			else if(score < 6) {
-				score *= 2;
-			}
-			else {
-				score *=3;
-			}
 		
 		}
+		if(score < 2) {
+			
+		}
+		else if(score < 6) {
+			score *= 2;
+		}
+		else {
+			score *=3;
+		}
 		
+		for(int i = xunit-1; i >=0; --i) {
+			for(int j = 0; j < yunit; ++j) {
+				System.out.print(map[i][j]);
+			}
+			System.out.println();
+		}
 		rpm.setScore(score);
-		map = temp;
+		this.map = temp;
 		gameOver();
 		
 	}
@@ -263,11 +283,10 @@ public class LeftPanelModel {
 		int[][] currLook = block.currLook();
 		int[] center = block.getCenter();
 		boolean shouldChangeToMap = false;
-		int currX = center[0];
-		int currY=center[1];
+		
 		for(int i =0; i < currLook.length;++i) {
-			currX= currLook[i][0] + center[0];
-			currY = currLook[i][1] + center[1];
+			int currX= currLook[i][0] + center[0];
+			int currY = currLook[i][1] + center[1];
 			
 			if(currX+1 == xunit) {
 				shouldChangeToMap = true;
@@ -280,13 +299,6 @@ public class LeftPanelModel {
 			}
 			
 		}
-		System.out.println("shouldchage: ");
-		System.out.println(shouldChangeToMap);
-		for(int i =0; i < currLook.length;++i) {
-			currX= currLook[i][0] + center[0];
-			currY = currLook[i][1] + center[1];
-			System.out.println("x is" + 	currX + " Y is" + currY);
-		}
 		
 		//System.out.println("center is" + center[0] + "center Y is" + center[1]);
 		
@@ -295,9 +307,18 @@ public class LeftPanelModel {
 		}
 		else {
 			block.setX(center[0]+1);
+			
 		}
 	
-		
+		//*********************
+		System.out.println("shouldchage: ");
+		System.out.println(shouldChangeToMap);
+		center = block.getCenter();
+		for(int i =0; i < currLook.length;++i) {
+			int currX= currLook[i][0] + center[0];
+			int currY = currLook[i][1] + center[1];
+			System.out.println("x is" + currX + " Y is" + currY);
+		}
 	}
 	
 	public void changetoMap() {
@@ -306,37 +327,15 @@ public class LeftPanelModel {
 		for(int[] pair: currLook) {
 			map[pair[0]+center[0]][pair[1]+center[1]] = 1;
 		}
+		rpm.setCurr();
 		this.block = rpm.getBlock();
-		rpm.generateShape();
-	
+		
 		this.eraseLine(); 
+		
 		if(gameOver) {
-		//**************************need somehome tell view
+			gameOver = true;
 		}
-	
-		/*	if(block.getType() == ShapeType.J) {
-		System.out.println("j ");
-	}
-		else if(block.getType() == ShapeType.L) {
-			System.out.println("j ");
-		}
-		else if(block.getType() == ShapeType.LINE) {
-			System.out.println("line ");
-		}
-			else if(block.getType() == ShapeType.S) {
-			System.out.println("S ");
-
-		}else if(block.getType() == ShapeType.SQUARE) {
-		System.out.println("Squar ");
-
-	}
-		else if(block.getType() == ShapeType.Z) {
-		System.out.println("Z");
-
-		}
-		else if(block.getType() == ShapeType.T) {
-		System.out.println("T ");
-}*/
+		
 	
 	}
 	
