@@ -3,8 +3,9 @@ package mvc.model;
 import java.awt.*;
 
 public class S extends AShape{
-    public S(Color color, int[] pos, int rotate) {
-        super(ShapeType.S, color, pos, rotate);
+    public S(Color color) {
+        super(ShapeType.S, color);
+        initCenter();
     }
     public S() {
         super(ShapeType.S);
@@ -30,18 +31,14 @@ public class S extends AShape{
     public int[][] currLook(){
       	 int[][] currLook = new int[4][2];
    	    int rotation = this.getRotation();
-   	    int[] center = this.getCenter();
-   		int x = 1;
-   		int y = 1;
-   		
-   		
+
    		/*    1 1
 		 *  1 0
 		 */
-		if(rotation == 0) {
-			currLook[0][0] = 1;
+		if(rotation == 0 || rotation == 2) {
+			currLook[0][0] = -1;
 			currLook[0][1] = 0;
-			currLook[1][0] = 1;
+			currLook[1][0] = -1;
 			currLook[1][1] = 1;
 			
 			currLook[2][0] = 0;
@@ -52,27 +49,27 @@ public class S extends AShape{
 		}
 		/*
 		 * 	1
-		 *  0 1
+		 *  1 0
 		 *    1
 		 */
-		else if(rotation == 1){
+		else if(rotation == 1 || rotation == 3){
 			currLook[0][0] = -1;
-			currLook[0][1] = 0;
+			currLook[0][1] = -1;
 			//center
 			currLook[1][0] = 0;
-			currLook[1][1] = 0;
+			currLook[1][1] = -1;
 			
 			currLook[2][0] = 0;
-			currLook[2][1] = 1;
+			currLook[2][1] = 0;
 			
 			currLook[3][0] = 1;
-			currLook[3][1] = 1;
+			currLook[3][1] = 0;
 		} 
 		/*
 		 * 	   0 1
 		 * 	 1 1
 		 */
-		else if(rotation == 2) {
+		/*else if(rotation == 2) {
 			//center
 			currLook[0][0] = 0;
 			currLook[0][1] = 0;
@@ -90,7 +87,7 @@ public class S extends AShape{
 		 *   1
 		 *   1 0
 		 *     1
-		 */
+		 
 		else { //rotation == 3
 			currLook[0][0] = -1;
 			currLook[0][1] = -1;
@@ -103,7 +100,7 @@ public class S extends AShape{
 			
 			currLook[3][0] = 1;
 			currLook[3][1] = 0;
-		}
+		}*/
    		return currLook;
        }
 }

@@ -1,5 +1,6 @@
 package mvc.model;
 
+import java.awt.Color;
 import java.util.List;
 import java.util.Random;
 
@@ -8,6 +9,7 @@ public class RightPanelModel {
 	private String name = "anonymity";
 	private int score = 0;
 	private IShape block;
+	private IShape nextBlock;
 	private Random rnd;
 
 	public RightPanelModel() {
@@ -15,41 +17,71 @@ public class RightPanelModel {
 		this.name = "anonymity";
 		this.score = 0;
 
-		rnd = new Random(); // YIHan for TESTING****************************
-		this.block  = generateShape();
+		rnd = new Random(); 
+		generateShape();
+		setCurr();
+		
 	}
 
 	public RightPanelModel(String name, int score) {
 		this.line = 0;
 		this.name = name;
 		this.score = score;
-		this.block  = generateShape();
+		generateShape();
+		setCurr();
 	}
 
-	public IShape generateShape() {
-		int shapeInt = rnd.nextInt(7);
+	public void generateShape() {
+		int shapeInt = (int) (Math.random() * 105);
+		if(shapeInt < 15) {
+			nextBlock = new S(Color.pink);
+		}
+		else if (shapeInt < 30) {
+			nextBlock = new Z(Color.blue);
+		}
+		else if(shapeInt <45) {
+			nextBlock = new T(Color.black);
+		}
+		else if(shapeInt < 60) {
+			nextBlock = new J(Color.gray);
+		}
+		else if(shapeInt < 75) {
+			nextBlock = new L(Color.magenta);
+		}
+		else if(shapeInt < 90) {
+			nextBlock = new Line(Color.green);
+		}
+		else {
+			nextBlock = new Square(Color.red);
+		}
+		/*int shapeInt = rnd.nextInt(7);
 		switch (shapeInt) {
 			case 0:
-				return new S();
+				block = new S();
 			case 1:
-				return new Z();
+				block = new Z();
 			case 2:
-				return new T();
+				block = new T();
 			case 3:
-				return new J();
+				block = new J();
 			case 4:
-				return new L();
+				block = new L();
 			case 5:
-				return new Line();
+				block = new Line();
 			case 6:
-				return new Square();
+				block = new Square();
 			default:
 				throw new IllegalStateException("Invalid shape int");
-		}
+		}*/
+	
 	}
-
+	public void setCurr() {
+		block = nextBlock;
+		generateShape();
+	}
 	public int getLine() {
-		return line;}
+		return line;
+	}
 	  
 	public String getName() {
 		return name;
@@ -58,9 +90,10 @@ public class RightPanelModel {
 		return score;
 	}
 	//Block getter setter
-	public void setLine(int line) {
+	public void setLineNoStatic(int line) {
 		this.line = line;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -70,6 +103,8 @@ public class RightPanelModel {
 	public IShape getBlock() {
 		return block;
 	}
-	
+	public IShape getNextBlock() {
+		return nextBlock;
+	}
 
 }

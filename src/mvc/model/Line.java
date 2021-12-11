@@ -3,8 +3,9 @@ package mvc.model;
 import java.awt.*;
 
 public class Line extends AShape{
-    public Line(Color color, int[] pos, int rotate) {
-        super(ShapeType.LINE, color, pos, rotate);
+    public Line(Color color) {
+        super(ShapeType.LINE, color);
+        initCenter();
     }
     public Line() {
         super(ShapeType.LINE);
@@ -30,7 +31,6 @@ public class Line extends AShape{
     public int[][] currLook(){
    	 int[][] currLook = new int[5][2];
    	 int rotation = this.getRotation();
-	    int[] center = this.getCenter();
 		
 		/*
 		 * 11011

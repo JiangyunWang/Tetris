@@ -2,27 +2,27 @@ package mvc.controller;
 
 import mvc.view.GameFrame;
 import mvc.view.setFrame;
+
+import java.util.Timer;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import mvc.model.LeftPanelModel;
 import mvc.model.RightPanelModel;
-
+import java.util.Timer;
+import java.util.TimerTask;
 public class init {
-
-	public static void main(String[] args) {
-
-		//initialize
-		boolean running = true;
-		GameFrame GameFrame = new GameFrame(/*total model*/);
-	    GameFrame.setVisible(true);
-		Controller c = new Controller(); //*******yihan********
-		while(true) {
-			if(running == false) {
-				break;
-			}
-			c.move();
-			
-		}
-	}
 	
+	public static void main(String[] args) {
+    	//lpm.autoDown();
+    	Controller c = new Controller();
+    	c.move();
+    	
+ 
+    	
+    	
+    }
 
 	  
 }
