@@ -81,7 +81,9 @@ public class RightPanel extends JPanel {
 		scoreField.setText(String.valueOf(model.getScore()));
 		nameField.setText(model.getName());
 		erasedField.setText(String.valueOf(model.getLine()));
-
+		scoreField.repaint();
+		nameField.repaint();
+		erasedField.repaint();
 		this.repaint();
 		nextB.setBlock(model.getNextBlock()); 
 	}

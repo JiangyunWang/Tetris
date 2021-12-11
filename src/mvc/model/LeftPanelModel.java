@@ -23,7 +23,7 @@ public class LeftPanelModel {
 	private Timer timer1;
 	
 	boolean isAttacked;
-	int score = 0; // add or set
+	//int score = 0; // add or set
 	
 	
 	/* yihan for testing ***************
@@ -63,9 +63,9 @@ public class LeftPanelModel {
 		return block;
 	}
 	
-	public int getScore() {
+	/*public int getScore() {
 		return score;
-	}
+	}*/
 	public Timer getTimer2() {
 		return timer2;
 	}
@@ -126,21 +126,23 @@ public class LeftPanelModel {
 	
 	public void eraseLine() { // i = row, j = column 
 		System.out.println("enterErase"); // *******************************
-		//!!!!!!!!!!!!error goes here
+		
 		int[][] temp = new int[xunit][yunit];
 		int cnt = xunit -1;
-		
+		int score = 0;
 		for(int i = xunit-1; i >=0; --i) {
+			boolean getScore = true;
 			for(int j = 0; j < yunit; ++j) {
 				if(map[i][j] == 0) {
 					temp[cnt] = map[i];
 					cnt--;
+					getScore = false;
 					break;
-					
 				}
-				else {
-					++score;
-				}
+				
+			}
+			if(getScore) {
+				++score;
 			}
 		
 		}
@@ -163,6 +165,7 @@ public class LeftPanelModel {
 		rpm.setScore(score);
 		this.map = temp;
 		gameOver();
+		System.out.println("score:" + score);//*************************
 		
 	}
 	
