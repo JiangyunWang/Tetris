@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import mvc.controller.GameOver;
+
 import mvc.model.IShape;
 import mvc.model.LeftPanelModel;
 import mvc.model.RightPanelModel;
