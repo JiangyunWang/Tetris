@@ -25,7 +25,6 @@ public class MultiThreadServer extends JFrame implements Runnable {
         this.setTitle("MultiThreadServer");
         this.setSize(400,200);
         Thread t = new Thread(this);
-//        players =  new HashMap<>();
         t.start();
     }
 

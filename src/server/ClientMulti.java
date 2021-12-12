@@ -17,29 +17,19 @@ public class ClientMulti extends JFrame{
     JTextArea textArea = null;
     Socket socket = null;
     JButton openButton;
-    JButton closeButton;
     Controller player;
 
     public ClientMulti() {
         super("Client");
-        textField = new JTextField(5);
-        textArea = new JTextArea(30,30);
         this.setLayout(new BorderLayout());
-        //this.add(textField, BorderLayout.NORTH);
-//        textField.addActionListener(new TextFieldListener());
 
-        JPanel topPanel = new JPanel(new GridLayout(2,1));
         JPanel controlPanel = new JPanel();
-        topPanel.add(textField);
-        openButton = new JButton("Open COnnection");
-        closeButton = new JButton("Close Connection");
-        controlPanel.add(openButton);
-        controlPanel.add(closeButton);
-        topPanel.add(controlPanel);
-        this.add(topPanel, BorderLayout.NORTH);
 
-        this.add(textArea, BorderLayout.CENTER);
-        closeButton.addActionListener((e) -> { try { socket.close(); textArea.append("connection closed");} catch (Exception e1) {System.err.println("error"); }});
+        openButton = new JButton("start Game");
+
+        controlPanel.add(openButton);
+
+        this.add(controlPanel);
         openButton.addActionListener(new OpenConnectionListener());
         setSize(400, 200);
     }
@@ -51,12 +41,11 @@ public class ClientMulti extends JFrame{
             // TODO Auto-generated method stub
             try {
                 socket = new Socket("localhost", 8000);
-                textArea.append("connected");
                 player = new Controller();
+                run();
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
-                textArea.append("connection Failure");
             }
         }
 
@@ -77,7 +66,7 @@ public class ClientMulti extends JFrame{
             toServer = new ObjectOutputStream(socket.getOutputStream());
         }
         catch (IOException ex) {
-            textArea.append(ex.toString() + '\n');
+            ex.printStackTrace();
         }
         PlayerInfo p = new PlayerInfo();
         while (true) {
