@@ -23,6 +23,7 @@ public class Controller {
     private IShape nexShape;
     private IShape  currShape;
     private int[][] map;
+    private int player;
 
 
     public Controller() {
@@ -33,8 +34,9 @@ public class Controller {
         this.map = lpm.getMap();
         gf.setVisible(true);
         this.currShape = lpm.getBlock();
-        
-       
+        this.gf.addKeyListener(new MyListener());
+
+    }
       class MyListener implements KeyListener{
 
 			@Override
@@ -45,37 +47,69 @@ public class Controller {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-	
-			    int dir = e.getKeyCode();
-                        switch (dir) {
-                            case KeyEvent.VK_LEFT:
-                                lpm.moveLeft();
-                                break; //*** why there is not break?*********
-                            case KeyEvent.VK_RIGHT:
-                                lpm.moveRight();
-                                break;
-                            case KeyEvent.VK_DOWN:
-                            	lpm.goDown();
-                               lpm.speedUp();
-                               break;
-                            case KeyEvent.VK_SPACE:
-                                lpm.setRotate();
-                                break;
 
-                        }
-			     gf.refresh();			
-			}
+                int dir = e.getKeyCode();
+                if (player == 0) {
+                    switch (dir) {
+                        case KeyEvent.VK_LEFT:
+                            lpm.moveLeft();
+                            break;
+                        case KeyEvent.VK_RIGHT:
+                            lpm.moveRight();
+                            break;
+                        case KeyEvent.VK_DOWN:
+                            lpm.goDown();
+                            lpm.speedUp();
+                            break;
+                        case KeyEvent.VK_SPACE:
+                            lpm.setRotate();
+                            break;
+
+                    }
+                } else {
+                    switch (dir) {
+                        case KeyEvent.VK_A:
+                            lpm.moveLeft();
+                            break;
+                        case KeyEvent.VK_D:
+                            lpm.moveRight();
+                            break;
+                        case KeyEvent.VK_S:
+                            lpm.goDown();
+                            lpm.speedUp();
+                            break;
+                        case KeyEvent.VK_W:
+                            lpm.setRotate();
+                            break;
+                    }
+                }
+                gf.refresh();
+            }
 
           @Override
           public void keyReleased(KeyEvent e) {
               int dir =  e.getKeyCode();
-              if (dir==KeyEvent.VK_DOWN)  {
-                  gf.getlPanel().speedBack();
+              if (player == 0) {
+                  if (dir==KeyEvent.VK_DOWN)  {
+                      gf.getlPanel().speedBack();
+                  }
+              }  else {
+                  if (dir==KeyEvent.VK_S)  {
+                      gf.getlPanel().speedBack();
+                  }
               }
+
           }
         	
         }
-        this.gf.addKeyListener(new MyListener());
+
+
+    public LeftPanelModel getLpm() {
+        return lpm;
+    }
+
+    public RightPanelModel getRpm() {
+        return rpm;
     }
 
     public void move() {
@@ -100,6 +134,13 @@ public class Controller {
     
     public void refreshRight() {
     	gf.refresh();
+    }
+
+    public int getPlayer() {
+        return player;
+    }
+    public void setPlayer(int num) {
+        this.player = num;
     }
     
     
