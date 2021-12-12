@@ -47,6 +47,8 @@ public class LeftPanelModel {
 		this.rpm = rpm;
 		map = new int[xunit][yunit];
 		block = rpm.getBlock();
+		
+		
 		gameOver = false;
 		isAttacked = false;
 		this.c = c;
@@ -134,12 +136,11 @@ public class LeftPanelModel {
 	}
 
 	
-	public void eraseLine() { // i = row, j = column 
-		System.out.println("enterErase"); // *******************************
-		
+	public void eraseLine() { // i = row, j = column S		
 		int[][] temp = new int[xunit][yunit];
 		int cnt = xunit -1;
 		int score = 0;
+
 		for(int i = xunit-1; i >=0; --i) {
 			boolean getScore = true;
 			for(int j = 0; j < yunit; ++j) {
@@ -157,6 +158,8 @@ public class LeftPanelModel {
 			}
 		
 		}
+		
+		
 		if(score < 2) {
 			
 		}
@@ -167,12 +170,7 @@ public class LeftPanelModel {
 			score *=3;
 		}
 		
-		for(int i = xunit-1; i >=0; --i) {
-			for(int j = 0; j < yunit; ++j) {
-				System.out.print(map[i][j]);
-			}
-			System.out.println();
-		}
+		
 		rpm.setScore(score);
 		this.map = temp;
 		gameOver();
@@ -325,14 +323,14 @@ public class LeftPanelModel {
 		}
 	
 		//*********************
-		System.out.println("shouldchage: ");
+		/*System.out.println("shouldchage: ");
 		System.out.println(shouldChangeToMap);
 		center = block.getCenter();
 		for(int i =0; i < currLook.length;++i) {
 			int currX= currLook[i][0] + center[0];
 			int currY = currLook[i][1] + center[1];
 			System.out.println("x is" + currX + " Y is" + currY);
-		}
+		}*/
 	}
 	
 	public void changetoMap() {
@@ -352,6 +350,7 @@ public class LeftPanelModel {
 		
 	
 	}
+	
 	
 	public void setRotate() {
 		boolean success = true;

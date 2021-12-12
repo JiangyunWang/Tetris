@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -14,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 
 import mvc.model.IShape;
 import mvc.model.LeftPanelModel;
@@ -29,10 +31,11 @@ public class GameFrame extends JFrame {
     private LeftPanel lPanel;
     private int[][] board;
     private IShape block;
+
 //    RightPanelModel rpm;
 //    LeftPanelModel lpm;
     
-    public GameFrame(RightPanelModel rpm, LeftPanelModel lpm) { // left panel should have medel
+    public GameFrame(RightPanelModel rpm, LeftPanelModel lpm) { 
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Tetris Battle");
@@ -41,7 +44,7 @@ public class GameFrame extends JFrame {
         this.setResizable(false);
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(creatMenus());
-        //****for test 
+       
         rPanel = new RightPanel(new BorderLayout(), rpm);
         lPanel = new LeftPanel(lpm);
         this.add(lPanel,BorderLayout.CENTER);
@@ -66,7 +69,7 @@ public class GameFrame extends JFrame {
         item.addActionListener((n)->new About());
         return item;
     }
-
+    
 
     public JMenuItem creatFileExitItem() {
         JMenuItem item = new JMenuItem("Exit");
@@ -74,11 +77,7 @@ public class GameFrame extends JFrame {
         return item;
     }
 //how to add gameover
-    public JLabel gameOver() {
-    	JLabel l = new JLabel();
-    	l.setText("GameOver!");
-    	return l;
-    }
+
 
 
 
@@ -135,7 +134,6 @@ public class GameFrame extends JFrame {
     }
 
         */
-        	
 
     public void refresh() {
     	

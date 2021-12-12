@@ -21,9 +21,6 @@ public class RightPanel extends JPanel {
 	private static JPanel upperPanel;
 	private JLabel UserName;
 	private JLabel erasedLine;
-	private JTextField scoreField;
-	private JTextField nameField;
-	private JTextField erasedField;
 	private RightPanelModel model;
 	private NextClass nextB;
 	private JPanel downPanel;
@@ -31,11 +28,13 @@ public class RightPanel extends JPanel {
 	public RightPanel(BorderLayout layout, RightPanelModel model) {
 		super(layout);
 		this.model = model;
+		//this.setSize(300,300);
 		downPanel = new JPanel(new BorderLayout());
-		downPanel.setSize(300,300);
 
+		//downPanel.setSize(100,100);
+		
 		nextB = new NextClass(model.getNextBlock(),new BorderLayout());
-		nextB.setSize(600,600);
+		//nextB.setSize(200,200);
 		creatPanel() ;
 
 		this.add(nextB,BorderLayout.CENTER);
@@ -43,31 +42,18 @@ public class RightPanel extends JPanel {
 		
 	}
 	
+	
+	public void creatLabel() {
+		score = new JLabel ("          Score:     "+ model.getScore());
+		UserName = new JLabel("          Name:     " +model.getName());
+		erasedLine = new JLabel("          erased line:     " + model.getLine());
 
-	public void creatScoreLabel() {
-		score = new JLabel ("Score: "+ model.getScore());
-		final int FIELD_WIDTH = 10;
-		scoreField = new JTextField(FIELD_WIDTH);
-		scoreField.setText("Score: "+ model.getScore());
 	}
 	
-	public void creatUserNameLabel() {
-		UserName = new JLabel("Name: " +model.getName());
-		
-		final int FIELD_WIDTH = 10;
-		nameField = new JTextField(FIELD_WIDTH);
-		nameField.setText("Name: "+ model.getName());
-	}
-	public void eraseLineLabel() {
-		erasedLine = new JLabel("erased line: " + model.getLine());
-		final int FIELD_WIDTH = 10;
-		erasedField = new JTextField(FIELD_WIDTH);
-		//erasedField.setText("erased line: " + model.getLine());//model!!
-	}
+	
 	public void creatPanel() {
-		creatScoreLabel();
-		creatUserNameLabel();
-		eraseLineLabel();
+		creatLabel();
+		
 		downPanel.add(UserName,BorderLayout.NORTH);
 		downPanel.add(erasedLine,BorderLayout.CENTER);
 		downPanel.add(score,BorderLayout.SOUTH);
@@ -80,12 +66,12 @@ public class RightPanel extends JPanel {
 	
 	public void refresh(){
 		
-		scoreField.setText(String.valueOf(model.getScore()));
-		nameField.setText(model.getName());
-		erasedField.setText(String.valueOf(model.getLine()));
-		scoreField.repaint();
-		nameField.repaint();
-		erasedField.repaint();
+		score.setText("          Score:     "+String.valueOf(model.getScore()));
+		UserName.setText("          Name:     " +model.getName());
+		erasedLine.setText("          erased line:     " + String.valueOf(model.getLine()));
+		score.repaint();
+		UserName.repaint();
+		erasedLine.repaint();
 		this.repaint();
 		nextB.setBlock(model.getNextBlock()); 
 	}
