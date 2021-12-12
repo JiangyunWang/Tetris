@@ -16,6 +16,7 @@ import mvc.model.RightPanelModel;
 import mvc.model.ShapeType;
 
 public class RightPanel extends JPanel {
+
 	private static JLabel score;
 	private static JPanel upperPanel;
 	private JLabel UserName;
@@ -23,17 +24,19 @@ public class RightPanel extends JPanel {
 	private RightPanelModel model;
 	private NextClass nextB;
 	private JPanel downPanel;
+
 	public RightPanel(BorderLayout layout, RightPanelModel model) {
 		super(layout);
 		this.model = model;
 		//this.setSize(300,300);
 		downPanel = new JPanel(new BorderLayout());
+
 		//downPanel.setSize(100,100);
 		
 		nextB = new NextClass(model.getNextBlock(),new BorderLayout());
 		//nextB.setSize(200,200);
 		creatPanel() ;
-		
+
 		this.add(nextB,BorderLayout.CENTER);
 		this.add(downPanel,BorderLayout.NORTH);
 		
@@ -44,6 +47,7 @@ public class RightPanel extends JPanel {
 		score = new JLabel ("          Score:     "+ model.getScore());
 		UserName = new JLabel("          Name:     " +model.getName());
 		erasedLine = new JLabel("          erased line:     " + model.getLine());
+
 	}
 	
 	
@@ -71,7 +75,6 @@ public class RightPanel extends JPanel {
 		this.repaint();
 		nextB.setBlock(model.getNextBlock()); 
 	}
-
 
 
 }

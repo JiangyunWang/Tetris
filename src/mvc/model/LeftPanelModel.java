@@ -21,6 +21,7 @@ public class LeftPanelModel {
 	private int[][] map;
 	private Timer timer2;
 	private Timer timer1;
+	private boolean isChanged;
 	
 	boolean isAttacked;
 	//int score = 0; // add or set
@@ -51,7 +52,16 @@ public class LeftPanelModel {
 		gameOver = false;
 		isAttacked = false;
 		this.c = c;
+		this.isChanged = false;
 		
+	 }
+
+	 public boolean getIsChanged() {
+		if (isChanged)  {
+			isChanged = false;
+			return true;
+		}
+		return isChanged;
 	 }
 
 	public void setattack(boolean isAttacked) {
@@ -144,6 +154,7 @@ public class LeftPanelModel {
 			}
 			if(getScore) {
 				++score;
+				isChanged = true;
 			}
 		
 		}
