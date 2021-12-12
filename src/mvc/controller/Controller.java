@@ -98,12 +98,12 @@ public class Controller {
     				if(lpm.getGameOver()) {
     					timer1.cancel();
     				  
-    					gameOverFlag();
+    					//gameOverFlag();
     				}
     			}
     		}, 1000, 1000);
     }
-    public void gameOverFlag() {
+   /* public void gameOverFlag() {
     	 JFrame jFrame = new JFrame();
     	 
     	 JOptionPane.showMessageDialog(jFrame, "Game Over! Your score is: " + rpm.getScore());
@@ -111,7 +111,7 @@ public class Controller {
 
          JOptionPane.showMessageDialog(jFrame, "Your message: "+getMessage);
     	 
-    }
+    }*/
     public void refreshRight() {
     	gf.refresh();
     }
