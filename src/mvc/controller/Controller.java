@@ -93,25 +93,15 @@ public class Controller {
     			{
     			
     				lpm.goDown();
-    				
     				gf.refresh();
     				if(lpm.getGameOver()) {
     					timer1.cancel();
     					System.out.println("over!!!");
-    					//gameOverFlag();
     				}
     			}
     		}, 1000, 1000);
     }
-   /* public void gameOverFlag() {
-    	 JFrame jFrame = new JFrame();
-    	 
-    	 JOptionPane.showMessageDialog(jFrame, "Game Over! Your score is: " + rpm.getScore());
-         String getMessage = JOptionPane.showInputDialog(jFrame, "Enter your user name");
-
-         JOptionPane.showMessageDialog(jFrame, "Your message: "+getMessage);
-    	 
-    }*/
+    
     public void refreshRight() {
     	gf.refresh();
     }
@@ -120,7 +110,6 @@ public class Controller {
    /* public void start(int[][] map, IShape shape) {
         for (int i=0; i<map.length; i++) {
             for(int j=0; j<map[0].length; j++) {
-
             }
         }
     }*/
