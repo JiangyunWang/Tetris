@@ -16,6 +16,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 public class Controller {
     private GameFrame gf;
     private LeftPanelModel lpm;
@@ -89,15 +93,25 @@ public class Controller {
     			{
     			
     				lpm.goDown();
+    				
     				gf.refresh();
     				if(lpm.getGameOver()) {
     					timer1.cancel();
-    					System.out.println("over!!!");
+    				  
+    					gameOverFlag();
     				}
     			}
     		}, 1000, 1000);
     }
-    
+    public void gameOverFlag() {
+    	 JFrame jFrame = new JFrame();
+    	 
+    	 JOptionPane.showMessageDialog(jFrame, "Game Over! Your score is: " + rpm.getScore());
+         String getMessage = JOptionPane.showInputDialog(jFrame, "Enter your user name");
+
+         JOptionPane.showMessageDialog(jFrame, "Your message: "+getMessage);
+    	 
+    }
     public void refreshRight() {
     	gf.refresh();
     }
