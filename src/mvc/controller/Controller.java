@@ -97,7 +97,7 @@ public class Controller {
     				gf.refresh();
     				if(lpm.getGameOver()) {
     					timer1.cancel();
-    				  
+    					System.out.println("over!!!");
     					//gameOverFlag();
     				}
     			}
