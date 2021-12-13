@@ -13,8 +13,6 @@ import java.util.Map;
 public class ClientMulti extends JFrame{
     ObjectOutputStream toServer = null;
     ObjectInputStream fromServer = null;
-    JTextField textField = null;
-    JTextArea textArea = null;
     Socket socket = null;
     JButton openButton;
     Controller player;
