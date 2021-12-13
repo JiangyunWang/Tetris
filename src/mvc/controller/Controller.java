@@ -16,6 +16,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+
+
 public class Controller {
     private GameFrame gf;
     private LeftPanelModel lpm;
@@ -106,7 +108,6 @@ public class Controller {
    /* public void start(int[][] map, IShape shape) {
         for (int i=0; i<map.length; i++) {
             for(int j=0; j<map[0].length; j++) {
-
             }
         }
     }*/
