@@ -118,6 +118,7 @@ public class Controller {
     	System.out.println("before loop");//*******************
     	
     	Timer timer1 = new Timer();
+        System.out.println("timer is： "+timer1.toString());
     	timer1.schedule(new TimerTask()
     		{
     			@Override

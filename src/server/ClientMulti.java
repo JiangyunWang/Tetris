@@ -42,6 +42,11 @@ public class ClientMulti extends JFrame{
             try {
                 socket = new Socket("localhost", 8000);
                 player = new Controller();
+                DataInputStream in = new DataInputStream(socket.getInputStream());
+                int id = in.readInt();
+                System.out.println("The id of player is： "+id);
+                player.setPlayer(id);
+                player.move();
                 run();
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
@@ -53,16 +58,9 @@ public class ClientMulti extends JFrame{
 
 
     public void run() {
-
         try {
-            // Create a socket to connect to the server
-            //socket = new Socket("localhost", 8000);
-            // Socket socket = new Socket("130.254.204.36", 8000);
-            // Socket socket = new Socket("drake.Armstrong.edu", 8000);
-            // Create an input stream to receive data from the server
             fromServer = new ObjectInputStream(socket.getInputStream());
 
-            // Create an output stream to send data to the server
             toServer = new ObjectOutputStream(socket.getOutputStream());
         }
         catch (IOException ex) {
@@ -78,8 +76,6 @@ public class ClientMulti extends JFrame{
             // Send the radius to the server
             toServer.writeObject(p);
             toServer.flush();
-
-
 
                 // Read from input
             Object object = fromServer.readObject();
@@ -105,7 +101,6 @@ public class ClientMulti extends JFrame{
             }
 
 
-            //socket.close();
             }
         catch(IOException ex){
                 System.err.println(ex);
