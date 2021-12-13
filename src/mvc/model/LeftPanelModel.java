@@ -292,6 +292,7 @@ public class LeftPanelModel {
 		if(gameOver) {
 			return;
 		}
+		System.out.println("*** go down");
 		int[][] currLook = block.currLook();
 		int[] center = block.getCenter();
 		boolean shouldChangeToMap = false;
