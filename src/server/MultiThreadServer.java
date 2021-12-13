@@ -25,6 +25,7 @@ public class MultiThreadServer extends JFrame implements Runnable {
         this.setTitle("MultiThreadServer");
         this.setSize(400,200);
         Thread t = new Thread(this);
+        players = new HashMap<>();
         t.start();
     }
 
@@ -68,7 +69,6 @@ public class MultiThreadServer extends JFrame implements Runnable {
     class HandleAClient implements Runnable {
         private Socket socket; // A connected socket
         private int clientNum;
-        private Controller player;
 
         /** Construct a thread */
         public HandleAClient(Socket socket, int clientNum) {
@@ -77,20 +77,19 @@ public class MultiThreadServer extends JFrame implements Runnable {
             if (!players.containsKey(clientNum)) {
                 players.put(clientNum, new PlayerInfo());
             }
-            this.player  = new Controller();
-            player.setPlayer(clientNum);
-            player.move();
+            try {
+                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+                out.writeInt(clientNum);
+                out.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }
 
         /** Run a thread */
         public void run() {
             try {
-                // Create data input and output streams
-//                DataInputStream inputFromClient = new DataInputStream(
-//                        socket.getInputStream());
-//                DataOutputStream outputToClient = new DataOutputStream(
-//                        socket.getOutputStream());
                 ObjectInputStream fromClient = new ObjectInputStream(socket.getInputStream());
 
                 // Create an output stream to send data to the server
@@ -98,8 +97,6 @@ public class MultiThreadServer extends JFrame implements Runnable {
 
                 // Continuously serve the client
                 while (true) {
-                    // Receive radius from the client
-                    // Read from input
                     try {
                         Object object = fromClient.readObject();
 

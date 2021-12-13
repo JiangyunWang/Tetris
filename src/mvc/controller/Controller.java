@@ -118,12 +118,13 @@ public class Controller {
     	System.out.println("before loop");//*******************
     	
     	Timer timer1 = new Timer();
+
     	timer1.schedule(new TimerTask()
     		{
     			@Override
     			public void run()
     			{
-    			
+                    System.out.println("timer is： "+timer1.toString());
     				lpm.goDown();
     				gf.refresh();
     				if(lpm.getGameOver()) {
