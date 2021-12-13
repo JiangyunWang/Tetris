@@ -39,8 +39,11 @@ public class ClientMulti extends JFrame{
         this.add(topPanel, BorderLayout.NORTH);
 
         this.add(textArea, BorderLayout.CENTER);
+        
+        
         closeButton.addActionListener((e) -> { try { socket.close(); textArea.append("connection closed");} catch (Exception e1) {System.err.println("error"); }});
         openButton.addActionListener(new OpenConnectionListener());
+        
         setSize(400, 200);
     }
 
@@ -52,7 +55,6 @@ public class ClientMulti extends JFrame{
             try {
                 socket = new Socket("localhost", 8000);
                 textArea.append("connected");
-                player = new Controller();
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
