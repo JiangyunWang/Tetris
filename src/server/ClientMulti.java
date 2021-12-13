@@ -21,6 +21,7 @@ public class ClientMulti extends JFrame{
 
     public ClientMulti() {
         super("Client");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //**********yihan
         this.setLayout(new BorderLayout());
 
         controlPanel = new JPanel();
@@ -33,6 +34,7 @@ public class ClientMulti extends JFrame{
         openButton.addActionListener(new OpenConnectionListener());
 
         setSize(400, 200);
+        this.setVisible(true); //**********yihan
     }
 
     class OpenConnectionListener implements ActionListener {
