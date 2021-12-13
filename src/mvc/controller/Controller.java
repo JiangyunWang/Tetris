@@ -25,7 +25,7 @@ public class Controller {
     private IShape nexShape;
     private IShape  currShape;
     private int[][] map;
-    private int player;
+    private int playerId;
 
 
     public Controller() {
@@ -39,7 +39,9 @@ public class Controller {
         this.gf.addKeyListener(new MyListener());
 
     }
-      class MyListener implements KeyListener{
+
+
+    class MyListener implements KeyListener{
 
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -51,7 +53,7 @@ public class Controller {
 			public void keyPressed(KeyEvent e) {
 
                 int dir = e.getKeyCode();
-                if (player == 0) {
+                if (playerId == 0) {
                     switch (dir) {
                         case KeyEvent.VK_LEFT:
                             lpm.moveLeft();
@@ -91,7 +93,7 @@ public class Controller {
           @Override
           public void keyReleased(KeyEvent e) {
               int dir =  e.getKeyCode();
-              if (player == 0) {
+              if (playerId == 0) {
                   if (dir==KeyEvent.VK_DOWN)  {
                       gf.getlPanel().speedBack();
                   }
@@ -124,26 +126,30 @@ public class Controller {
     			@Override
     			public void run()
     			{
-                    System.out.println("timer is： "+timer1.toString());
+
     				lpm.goDown();
-    				gf.refresh();
+//    				gf.refresh();
     				if(lpm.getGameOver()) {
     					timer1.cancel();
     					System.out.println("over!!!");
     				}
+                    System.out.println("timer is： "+timer1.toString());
     			}
     		}, 1000, 1000);
     }
     
-    public void refreshRight() {
-    	gf.refresh();
-    }
+//    public void refreshRight() {
+//    	gf.refresh();
+//    }
 
     public int getPlayer() {
-        return player;
+        return playerId;
     }
     public void setPlayer(int num) {
-        this.player = num;
+        this.playerId = num;
+    }
+    public GameFrame getGf() {
+        return this.gf;
     }
     
     

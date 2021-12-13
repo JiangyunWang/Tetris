@@ -16,12 +16,14 @@ public class ClientMulti extends JFrame{
     Socket socket = null;
     JButton openButton;
     Controller player;
+    JPanel controlPanel;
+    int id = -1;
 
     public ClientMulti() {
         super("Client");
         this.setLayout(new BorderLayout());
 
-        JPanel controlPanel = new JPanel();
+        controlPanel = new JPanel();
 
         openButton = new JButton("start Game");
 
@@ -29,6 +31,7 @@ public class ClientMulti extends JFrame{
 
         this.add(controlPanel);
         openButton.addActionListener(new OpenConnectionListener());
+
         setSize(400, 200);
     }
 
@@ -36,29 +39,34 @@ public class ClientMulti extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            // TODO Auto-generated method stub
             try {
                 socket = new Socket("localhost", 8000);
-                player = new Controller();
+                controlPanel.setVisible(false);
                 DataInputStream in = new DataInputStream(socket.getInputStream());
-                int id = in.readInt();
+                id = in.readInt();
                 System.out.println("The id of player is： "+id);
-                player.setPlayer(id);
-                player.move();
                 run();
+
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
+
+
         }
 
     }
 
 
     public void run() {
+        if (id>=0) {
+            player = new Controller();
+            this.add(player.getGf());
+            player.setPlayer(id);
+            player.move();
+        }
         try {
             fromServer = new ObjectInputStream(socket.getInputStream());
-
             toServer = new ObjectOutputStream(socket.getOutputStream());
         }
         catch (IOException ex) {
