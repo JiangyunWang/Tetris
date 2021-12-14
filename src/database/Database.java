@@ -11,8 +11,8 @@ import java.util.Date;
 
 public class Database {
 	
-	public void findTopThree() {
-				
+	public ResultSet findTopThree() {
+		ResultSet rset = null;
 		try {
 			Connection	connection = null;
 		
@@ -21,18 +21,18 @@ public class Database {
 			PreparedStatement preparedStatement = connection.prepareStatement(queryString);
 			//System.out.println("Database connected"); 
 			
-			ResultSet rset = preparedStatement.executeQuery();
+			 rset = preparedStatement.executeQuery();
 			ResultSetMetaData rsmd = rset.getMetaData();
 			int numColumns = rsmd.getColumnCount();
 			
 			Map<String, Integer> m = new HashMap<String, Integer>();
 		
-			while (rset.next() ) {
+			/*while (rset.next() ) {
 		
 		        String  score= rset.getString("score");
 		        String userName = rset.getString("userName");
 		        System.out.println(userName+ " " + score + " ");
-			}
+			}*/
 			
 			
 			
@@ -42,6 +42,7 @@ public class Database {
 			e.printStackTrace();
 			System.exit(0);
 		}
+		return rset;
 	}
 	
 	
@@ -78,10 +79,8 @@ public class Database {
 				String sql1 = "INSERT INTO scoreHistory VALUES (?,?)";
 				
 				PreparedStatement updating = connection.prepareStatement(sql1);
-				
 				updating.setString(1, userName);
 				updating.setInt(2, currscore);
-				
 				updating.execute();
 				
 			}
@@ -93,11 +92,11 @@ public class Database {
 	}
 	
 
-public static void main(String[] args) {
+/*public static void main(String[] args) {
 		Database db = new Database();
 		db.findTopThree();
 		//db.storeNewUser("SX", 67);
 		
-}
+}*/
 }
 

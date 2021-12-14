@@ -7,6 +7,8 @@ import mvc.view.LeftPanel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -15,6 +17,11 @@ import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import database.Database;
 
 public class Controller {
     private GameFrame gf;
@@ -58,10 +65,34 @@ public class Controller {
                 gf.refresh();
                 if (lpm.getGameOver()) {
                     timer1.cancel();
-                    System.out.println("over!!!");
+                   try {
+					gameOverFlag();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 }
             }
         }, 1000, 1000);
+    }
+
+
+    public void gameOverFlag() throws SQLException {
+	 JFrame jFrame = new JFrame();
+	 
+	 JOptionPane.showMessageDialog(jFrame, "Game Over! Your score is: " + rpm.getScore());
+	Database db = new Database();
+	ResultSet rset  = db.findTopThree();
+	 JOptionPane.showMessageDialog(jFrame, "Game Over! Your score is: " + rpm.getScore());//!!!!!!!!!!
+	while (rset.next() ) {
+		
+        String  score= rset.getString("score");
+        String userName = rset.getString("userName");
+        System.out.println(userName+ " " + score + " ");
+	}
+	 String getMessage = JOptionPane.showInputDialog(jFrame, "Enter your user name");
+	 JOptionPane.showMessageDialog(jFrame, "Your message: "+getMessage);
+	 
     }
 
 
