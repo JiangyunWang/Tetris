@@ -94,7 +94,7 @@ public class LeftPanel extends JPanel { //implements ActionListener {
 			pair[0]+=x;
 			pair[1]+=y;
 			g2d.setPaint(shape.getColor());
-			g2d.drawRect(pair[1]*25,pair[0]*25,25,25);
+			g2d.fillRect(pair[1]*25,pair[0]*25,25,25);
 			
 		}
 
