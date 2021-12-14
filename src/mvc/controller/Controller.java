@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -53,7 +54,6 @@ public class Controller {
     }
 
     public void move() {
-//        System.out.println("before loop");// *******************
 
         Timer timer1 = new Timer();
 
@@ -65,31 +65,26 @@ public class Controller {
                 gf.refresh();
                 if (lpm.getGameOver()) {
                     timer1.cancel();
-                   try {
+                  
 					gameOverFlag();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
                 }
             }
         }, 1000, 1000);
     }
 
 
-    public void gameOverFlag() throws SQLException {
+    public void gameOverFlag() {
+    	System.out.println("in gameover flag!!!");
 	 JFrame jFrame = new JFrame();
 	 
 	 JOptionPane.showMessageDialog(jFrame, "Game Over! Your score is: " + rpm.getScore());
 	Database db = new Database();
-	ResultSet rset  = db.findTopThree();
-	 JOptionPane.showMessageDialog(jFrame, "Game Over! Your score is: " + rpm.getScore());//!!!!!!!!!!
-	while (rset.next() ) {
-		
-        String  score= rset.getString("score");
-        String userName = rset.getString("userName");
-        System.out.println(userName+ " " + score + " ");
-	}
+	
+	ArrayList<String> result = db.findTop();
+	
+	 JOptionPane.showMessageDialog(jFrame, "World Top Score is " + result.get(0) + "\n" + "User name : " + result.get(1));//!!!!!!!!!!
+	
 	 String getMessage = JOptionPane.showInputDialog(jFrame, "Enter your user name");
 	 JOptionPane.showMessageDialog(jFrame, "Your message: "+getMessage);
 	 

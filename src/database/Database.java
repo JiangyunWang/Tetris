@@ -7,17 +7,19 @@ import java.util.Map;
 import java.util.Set;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Database {
 	
-	public ResultSet findTopThree() {
+	public ArrayList<String> findTop() {
 		ResultSet rset = null;
+		ArrayList<String> list = new ArrayList<String>();
 		try {
 			Connection	connection = null;
 		
 			connection = DriverManager.getConnection("jdbc:sqlite:javabook.db"); //current directory is projects/Tetris/src
-			String queryString = "select * from scoreHistory order by score DESC limit 3"; 
+			String queryString = "select * from scoreHistory order by score DESC limit 1"; 
 			PreparedStatement preparedStatement = connection.prepareStatement(queryString);
 			//System.out.println("Database connected"); 
 			
@@ -26,13 +28,20 @@ public class Database {
 			int numColumns = rsmd.getColumnCount();
 			
 			Map<String, Integer> m = new HashMap<String, Integer>();
+			 String  score = null;
+			 String userName = null;
+			while (rset.next() ) {
 		
-			/*while (rset.next() ) {
-		
-		        String  score= rset.getString("score");
-		        String userName = rset.getString("userName");
-		        System.out.println(userName+ " " + score + " ");
-			}*/
+		        score= rset.getString("score");
+		        userName = rset.getString("userName");
+		        
+		       // System.out.println(userName+ " " + score + " ");
+			}
+			
+			
+			list.add(score);
+			list.add(userName);
+			
 			
 			
 			
@@ -42,7 +51,7 @@ public class Database {
 			e.printStackTrace();
 			System.exit(0);
 		}
-		return rset;
+		return list;
 	}
 	
 	

@@ -5,15 +5,15 @@ import java.util.List;
 import java.util.Random;
 
 public class RightPanelModel {
-	//private int line; 
-	private String name = "anonymity";
+	private int line; 
+	//private String name = "anonymity";
 	private int score;
 	private IShape block;
 	private IShape nextBlock;
 	private Random rnd;
 
 	public RightPanelModel() {
-		//this.line = 0;
+		this.line = 0;
 		//this.name = "anonymity";
 		this.score = 0;
 
@@ -84,24 +84,24 @@ public class RightPanelModel {
 		block = nextBlock;
 		generateShape();
 	}
-	/*public int getLine() {
+	public int getLine() {
 		return line;
-	}*/
-	  
-	public String getName() {
-		return name;
 	}
+	  
+	/*public String getName() {
+		return name;
+	}*/
 	public int getScore() {
 		return score;
 	}
 	//Block getter setter
-	/*public void setLineNoStatic(int line) {
+	public void setLineNoStatic(int line) {
 		this.line = line;
-	}*/
-	
-	public void setName(String name) {
-		this.name = name;
 	}
+	
+	/*public void setName(String name) {
+		this.name = name;
+	}*/
 	public void setScore(int score) {
 		this.score += score;
 	}

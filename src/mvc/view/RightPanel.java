@@ -66,7 +66,7 @@ public class RightPanel extends JPanel {
 	
 	public void refresh(){
 		
-		score.setText("          Score:     "+String.valueOf(model.getScore()));
+		score.setText("         Current  Score:       " +String.valueOf(model.getScore()));
 		//UserName.setText("          Name:     " +model.getName());
 		//erasedLine.setText("          erased line:     " + String.valueOf(model.getLine()));
 		score.repaint();
