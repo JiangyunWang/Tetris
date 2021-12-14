@@ -14,7 +14,7 @@ public class RightPanelModel {
 
 	public RightPanelModel() {
 		this.line = 0;
-		this.name = "anonymity";
+		//this.name = "anonymity";
 		this.score = 0;
 
 		rnd = new Random(); 
@@ -23,13 +23,13 @@ public class RightPanelModel {
 		
 	}
 
-	public RightPanelModel(String name, int score) {
+	/*public RightPanelModel(String name, int score) {
 		this.line = 0;
 		this.name = name;
 		this.score = score;
 		generateShape();
 		setCurr();
-	}
+	}*/
 
 	public void generateShape() {
 		int shapeInt = (int) (Math.random() * 105);
@@ -54,6 +54,12 @@ public class RightPanelModel {
 		else {
 			nextBlock = new Square(Color.red);
 		}
+		//***************
+		int x = nextBlock.getCenter()[0];
+		int y = nextBlock.getCenter()[1];
+		
+			nextBlock.setY(y+5);
+		
 		/*int shapeInt = rnd.nextInt(7);
 		switch (shapeInt) {
 			case 0:
