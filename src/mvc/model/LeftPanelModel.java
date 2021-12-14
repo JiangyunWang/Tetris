@@ -174,7 +174,7 @@ public class LeftPanelModel {
 		rpm.setScore(score);
 		this.map = temp;
 		gameOver();
-		System.out.println("score:" + score);//*************************
+		//System.out.println("score:" + score);
 		
 	}
 	

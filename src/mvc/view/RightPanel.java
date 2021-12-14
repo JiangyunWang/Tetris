@@ -45,8 +45,8 @@ public class RightPanel extends JPanel {
 	
 	public void creatLabel() {
 		score = new JLabel ("          Score:     "+ model.getScore());
-		UserName = new JLabel("          Name:     " +model.getName());
-		erasedLine = new JLabel("          erased line:     " + model.getLine());
+		//UserName = new JLabel("          Name:     " +model.getName());
+		//erasedLine = new JLabel("          erased line:     " + model.getLine());
 
 	}
 	
@@ -54,8 +54,8 @@ public class RightPanel extends JPanel {
 	public void creatPanel() {
 		creatLabel();
 		
-		downPanel.add(UserName,BorderLayout.NORTH);
-		downPanel.add(erasedLine,BorderLayout.CENTER);
+		//downPanel.add(UserName,BorderLayout.NORTH);
+		//downPanel.add(erasedLine,BorderLayout.CENTER);
 		downPanel.add(score,BorderLayout.SOUTH);
 		
 	}
@@ -67,11 +67,10 @@ public class RightPanel extends JPanel {
 	public void refresh(){
 		
 		score.setText("          Score:     "+String.valueOf(model.getScore()));
-		UserName.setText("          Name:     " +model.getName());
-		erasedLine.setText("          erased line:     " + String.valueOf(model.getLine()));
+		//UserName.setText("          Name:     " +model.getName());
+		//erasedLine.setText("          erased line:     " + String.valueOf(model.getLine()));
 		score.repaint();
-		UserName.repaint();
-		erasedLine.repaint();
+		//erasedLine.repaint();
 		this.repaint();
 		nextB.setBlock(model.getNextBlock()); 
 	}
