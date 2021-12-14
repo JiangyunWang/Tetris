@@ -17,16 +17,21 @@ public class MultiThreadServer extends JFrame implements Runnable {
     // Number a client
     private int clientNo = -1;
     Map<Integer, PlayerInfo> players;
+//    private int standby;
+    private Map<Integer, Thread> threads;
 
     public MultiThreadServer() {
         ta = new JTextArea(10,10);
         JScrollPane sp = new JScrollPane(ta);
         this.add(sp);
+//        standby = 0;
         this.setTitle("MultiThreadServer");
         this.setSize(400,200);
         Thread t = new Thread(this);
         players = new HashMap<>();
+        threads = new HashMap<>();
         t.start();
+
     }
 
     public void run() {
@@ -52,9 +57,18 @@ public class MultiThreadServer extends JFrame implements Runnable {
                         + inetAddress.getHostName() + "\n");
                 ta.append("Client " + clientNo + "'s IP Address is "
                         + inetAddress.getHostAddress() + "\n");
+//                standby++;
+
 
                 // Create and start a new thread for the connection
-                new Thread(new HandleAClient(socket, clientNo)).start();
+                threads.put(clientNo,new Thread(new HandleAClient(socket, clientNo)));
+                System.out.println("server：threads size: "+threads.size());
+                if(threads.size()==2) {
+                    for (Thread t: threads.values()) {
+                        t.start();
+                    }
+                }
+
             }
         }
         catch(IOException ex) {
@@ -77,24 +91,23 @@ public class MultiThreadServer extends JFrame implements Runnable {
             if (!players.containsKey(clientNum)) {
                 players.put(clientNum, new PlayerInfo());
             }
-            try {
-                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-                out.writeInt(clientNum);
-                out.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
 
         }
 
         /** Run a thread */
         public void run() {
+            ObjectInputStream fromClient;
+            ObjectOutputStream toClient;
             try {
-                ObjectInputStream fromClient = new ObjectInputStream(socket.getInputStream());
+                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+                out.writeInt(clientNum);
+                out.flush();
+
+                fromClient = new ObjectInputStream(socket.getInputStream());
 
                 // Create an output stream to send data to the server
-                ObjectOutputStream toClient = new ObjectOutputStream(socket.getOutputStream());
-
+                toClient = new ObjectOutputStream(socket.getOutputStream());
                 // Continuously serve the client
                 while (true) {
                     try {
@@ -115,11 +128,14 @@ public class MultiThreadServer extends JFrame implements Runnable {
                     }
 
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            }
-            catch(IOException ex) {
-                ex.printStackTrace();
-            }
+
+
+
+
         }
     }
 

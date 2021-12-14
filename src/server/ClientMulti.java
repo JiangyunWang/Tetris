@@ -27,9 +27,20 @@ public class ClientMulti {
                 System.out.println("Wait for starting game!");
 
         }
-//        player.getGf().openButton.setFocusable(false);
+
+        if (player.getGf().connected) {
+            try {
+                socket = new Socket("localhost", 8000);
+                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+                out.writeBoolean(true);
+                out.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
         try {
-            socket = new Socket("localhost", 8000);
             DataInputStream in = new DataInputStream(socket.getInputStream());
             id = in.readInt();
             player.getGf().setPlayer(id);
@@ -41,14 +52,33 @@ public class ClientMulti {
         } catch (IOException e) {
             e.printStackTrace();
         }
+//        player.getGf().openButton.setFocusable(false);
+
+        try {
+            socket = new Socket("localhost", 8000);
+            DataInputStream in = new DataInputStream(socket.getInputStream());
+            id = in.readInt();
+            player.getGf().setPlayer(id);
+            System.out.println("received from server: "+id);
+            System.out.println("player id："+player.playerId);
+            player.move();
+            System.out.println("--------------：");
+            fromServer = new ObjectInputStream(socket.getInputStream());
+            toServer = new ObjectOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         PlayerInfo p = new PlayerInfo();
+
+
         while (true) {
         try {
             // Get the radius from the text field
 
             p.setScore(player.getRpm().getScore());
             p.setWin(player.getLpm().getGameOver());
+            p.setCommand(player.getGf().getCommand());
 
             // Send the radius to the server
             toServer.writeObject(p);
@@ -59,6 +89,7 @@ public class ClientMulti {
 
                 // Write to the file
             Map<Integer,PlayerInfo> map = (Map)object;
+            System.out.println("received map size："+map.size());
             PlayerInfo self = map.get(player.getPlayer());
             PlayerInfo compe = null;
             for (Integer i: map.keySet()) {
@@ -74,6 +105,12 @@ public class ClientMulti {
 
             if (compe!=null &&compe.isWin()) {
                 player.getLpm().gameOver();
+//                rpm shows win or lose
+            }
+
+            if (compe!=null &&compe.getCommand().size()>0) {
+                System.out.println("commands: "+compe.getCommand().size());
+                player.executeCommand(compe.getCommand());
 //                rpm shows win or lose
             }
 
