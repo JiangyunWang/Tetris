@@ -2,54 +2,55 @@ package mvc.view;
 
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.net.Socket;
 
 
 import mvc.model.IShape;
 import mvc.model.LeftPanelModel;
 import mvc.model.RightPanelModel;
+import server.ClientMulti;
 
 
 public class GameFrame extends JFrame {
 
-    private static final int game_x = 26;
-    private static final int game_y = 12;
-    JTextArea[][] text;
     private RightPanel rPanel;
     private LeftPanel lPanel;
-    private int[][] board;
-    private IShape block;
+    public JButton openButton;
+    JPanel controlPanel;
+    public boolean connected;
+    private int playerId;
 
 //    RightPanelModel rpm;
 //    LeftPanelModel lpm;
     
-    public GameFrame(RightPanelModel rpm, LeftPanelModel lpm) { 
-
+    public GameFrame(RightPanelModel rpm, LeftPanelModel lpm,  int id) {
+        this.playerId = id;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Tetris Battle");
         this.setSize(600, 800);
-        this.setVisible(true);
+
         this.setResizable(false);
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(creatMenus());
-       
+
+        controlPanel = new JPanel();
+
         rPanel = new RightPanel(new BorderLayout(), rpm);
         lPanel = new LeftPanel(lpm);
         this.add(lPanel,BorderLayout.CENTER);
         this.add(rPanel,BorderLayout.EAST);
+        this.add(controlPanel,BorderLayout.NORTH);
+        this.setVisible(true);
         setJMenuBar(menuBar);
+        connected = false;
+        this.addKeyListener(new MyListener());
     }
 
     private JMenu creatAboutMenus() {
@@ -140,5 +141,87 @@ public class GameFrame extends JFrame {
     	 lPanel.repaint();
     	 rPanel.refresh();
     }
+
+    class OpenConnectionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+             connected = true;
+        }
+
+    }
+
+    class MyListener implements KeyListener{
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            System.out.println("key pressed: user id"+playerId);
+            int dir = e.getKeyCode();
+            if (playerId == 0) {
+                switch (dir) {
+                    case KeyEvent.VK_LEFT:
+                        lPanel.getModel().moveLeft();
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        lPanel.getModel().moveRight();
+                        break;
+                    case KeyEvent.VK_DOWN:
+                        lPanel.getModel().goDown();
+                        lPanel.getModel().speedUp();
+                        break;
+                    case KeyEvent.VK_UP:
+                        lPanel.getModel().setRotate();
+                        break;
+                    case KeyEvent.VK_SPACE:
+                        connected  = true;
+
+                }
+            } else {
+                switch (dir) {
+                    case KeyEvent.VK_A:
+                        lPanel.getModel().moveLeft();
+                        break;
+                    case KeyEvent.VK_D:
+                        lPanel.getModel().moveRight();
+                        break;
+                    case KeyEvent.VK_S:
+                        lPanel.getModel().goDown();
+                        lPanel.getModel().speedUp();
+                        break;
+                    case KeyEvent.VK_W:
+                        lPanel.getModel().setRotate();
+                        break;
+                }
+            }
+            refresh();
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            int dir = e.getKeyCode();
+            if (playerId == 0) {
+                if (dir==KeyEvent.VK_DOWN)  {
+                    lPanel.getModel().speedBack();
+                }
+            }  else {
+                if (dir==KeyEvent.VK_S)  {
+                    lPanel.getModel().speedBack();
+                }
+            }
+
+        }
+
+    }
+
+    public void setPlayer(int num) {
+        this.playerId = num;
+    }
+
 
 }

@@ -100,6 +100,10 @@ public class LeftPanel extends JPanel { //implements ActionListener {
 
 	}
 
+	public LeftPanelModel getModel() {
+		return this.model;
+	}
+
 	
 
 }
