@@ -17,10 +17,9 @@ public class Database {
 	public void findTopThree() {
 				
 		try {
-			
 			Connection	connection = null;
 		
-			connection = DriverManager.getConnection("jdbc:sqlite:javabook.db");
+			connection = DriverManager.getConnection("jdbc:sqlite:..\\..\\javabook.db"); //current directory is projects/Tetris/src
 			String queryString = "select * from scoreHistory order by score DESC limit 3"; 
 			PreparedStatement preparedStatement = connection.prepareStatement(queryString);
 			System.out.println("Database connected"); 
@@ -31,12 +30,6 @@ public class Database {
 			
 			Map<String, Integer> m = new HashMap<String, Integer>();
 			Set<String> columns = new HashSet<String>();
-			//find the name of sql
-			/*for (int i=1;i<=numColumns;i++) {
-				System.out.println("column " + i + ": " +rsmd.getColumnName(i));
-				m.put(rsmd.getColumnName(i), new Integer(i));
-				columns.add(rsmd.getColumnName(i));
-			}*/
 			
 			System.out.println("Results:");
 			while (rset.next() ) {
@@ -75,7 +68,7 @@ public class Database {
 	}
 	
 	
-	public void storeNewUser(String userName, int score) {
+	public void storeNewUser(String userName, int currscore) {
 		try {
 			Connection connection = null;
 		
@@ -85,11 +78,23 @@ public class Database {
 			findScore.setString(1,userName);
 			ResultSet rset = findScore.executeQuery();
 			ResultSetMetaData rsmd = rset.getMetaData();
-			String name = rset.getString("userName");
-			System.out.println();
-			//String queryString = "select * from scoreHistory order by score DESC limit 3"; 
+			
+			
+			int pastscore =  Integer.valueOf(rset.getString("score"));
+			System.out.println(pastscore);
+			
+			if (rsmd != null && currscore > pastscore) {
+				String sql1 = "UPDATE scoreHistory SET score = ? WHERE userName = ?";
+				PreparedStatement updating = connection.prepareStatement(sql1);
+				updating.setInt(1, currscore);
+				updating.setString(2, userName);
+			}
+			else {
+				//String sql
+			}
+
 					
-			//String sql1 = "UPDATE Student SET LastName = 'Stevens' WHERE lastName = 'Stevensen'";
+			
 		}catch (SQLException e) {
 			
 		}	
