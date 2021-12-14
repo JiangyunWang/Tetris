@@ -1,3 +1,4 @@
+
 package database;
 
 import java.sql.DriverManager;
@@ -10,23 +11,20 @@ import java.util.Set;
 import java.sql.*;
 
 
+
 public class Database {
 	
-	public void query() {
-		PreparedStatement preparedStatement = null;
-		Connection connection = null;
-	
+	public void findTopThree() {
+				
 		try {
-			connection = DriverManager.getConnection("jdbc:sqlite:javabook.db");
-		
-			/*
-			 * if we don't want transactions to 
-			 * automatically propagate
-				connection.setAutoCommit(false);
-			 */
 			
+			Connection	connection = null;
+		
+			connection = DriverManager.getConnection("jdbc:sqlite:javabook.db");
+			String queryString = "select * from scoreHistory order by score DESC limit 3"; 
+			PreparedStatement preparedStatement = connection.prepareStatement(queryString);
 			System.out.println("Database connected"); 
-			String queryString = "select * from scoreHistory order by score DESC limit 5"; 
+			
 			ResultSet rset = preparedStatement.executeQuery();
 			ResultSetMetaData rsmd = rset.getMetaData();
 			int numColumns = rsmd.getColumnCount();
@@ -34,26 +32,25 @@ public class Database {
 			Map<String, Integer> m = new HashMap<String, Integer>();
 			Set<String> columns = new HashSet<String>();
 			//find the name of sql
-			for (int i=1;i<=numColumns;i++) {
+			/*for (int i=1;i<=numColumns;i++) {
 				System.out.println("column " + i + ": " +rsmd.getColumnName(i));
 				m.put(rsmd.getColumnName(i), new Integer(i));
 				columns.add(rsmd.getColumnName(i));
-			}
+			}*/
 			
 			System.out.println("Results:");
 			while (rset.next() ) {
-				String result = "";
+				/*String result = "";
 				for (String col : columns) {
 					result += rset.getString(col);
 					result += " ";
 				}
 				System.out.println(result);
-				continue;/*
-		        String  firstName= rset.getString("firstName");
-		        String mi = rset.getString("mi");
-		        String lastName = rset.getString("lastName");
-		        System.out.println(firstName + " " + mi + " " + lastName);
-		*/		
+				continue;*/
+		        String  score= rset.getString("score");
+		        String date = rset.getString("TIME");
+		        String userName = rset.getString("userName");
+		        System.out.println(score + " " + date + " " + userName);
 			}
 			
 			/*String sql1 = "UPDATE Student SET LastName = 'Stevens' WHERE lastName = 'Stevensen'";
@@ -76,5 +73,35 @@ public class Database {
 			System.exit(0);
 		}
 	}
+	
+	
+	public void storeNewUser(String userName, int score) {
+		try {
+			Connection connection = null;
+		
+			connection = DriverManager.getConnection("jdbc:sqlite:javabook.db");
+			String sql2 = "select score from scoreHistory where userName = ?";
+			PreparedStatement findScore = connection.prepareStatement(sql2);
+			findScore.setString(1,userName);
+			ResultSet rset = findScore.executeQuery();
+			ResultSetMetaData rsmd = rset.getMetaData();
+			String name = rset.getString("userName");
+			System.out.println();
+			//String queryString = "select * from scoreHistory order by score DESC limit 3"; 
+					
+			//String sql1 = "UPDATE Student SET LastName = 'Stevens' WHERE lastName = 'Stevensen'";
+		}catch (SQLException e) {
+			
+		}	
+	}
+	
+
+
+public static void main(String[] args) {
+		Database db = new Database();
+		db.findTopThree();
+		//db.storeNewUser("yihan", 3);
+		
+}
 }
 

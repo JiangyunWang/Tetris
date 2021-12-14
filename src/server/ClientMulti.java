@@ -14,6 +14,7 @@ public class ClientMulti {
     int id = -1;
 
     public ClientMulti() {
+
         player = new Controller();
         run();
 
