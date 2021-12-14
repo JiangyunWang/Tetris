@@ -7,32 +7,41 @@ import java.util.Map;
 import java.util.Set;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Database {
 	
-	public void findTopThree() {
-				
+	public ArrayList<String> findTop() {
+		ResultSet rset = null;
+		ArrayList<String> list = new ArrayList<String>();
 		try {
 			Connection	connection = null;
 		
 			connection = DriverManager.getConnection("jdbc:sqlite:javabook.db"); //current directory is projects/Tetris/src
-			String queryString = "select * from scoreHistory order by score DESC limit 3"; 
+			String queryString = "select * from scoreHistory order by score DESC limit 1"; 
 			PreparedStatement preparedStatement = connection.prepareStatement(queryString);
 			//System.out.println("Database connected"); 
 			
-			ResultSet rset = preparedStatement.executeQuery();
+			 rset = preparedStatement.executeQuery();
 			ResultSetMetaData rsmd = rset.getMetaData();
 			int numColumns = rsmd.getColumnCount();
 			
 			Map<String, Integer> m = new HashMap<String, Integer>();
-		
+			 String  score = null;
+			 String userName = null;
 			while (rset.next() ) {
 		
-		        String  score= rset.getString("score");
-		        String userName = rset.getString("userName");
-		        System.out.println(userName+ " " + score + " ");
+		        score= rset.getString("score");
+		        userName = rset.getString("userName");
+		        
+		       // System.out.println(userName+ " " + score + " ");
 			}
+			
+			
+			list.add(score);
+			list.add(userName);
+			
 			
 			
 			
@@ -42,6 +51,7 @@ public class Database {
 			e.printStackTrace();
 			System.exit(0);
 		}
+		return list;
 	}
 	
 	
@@ -78,10 +88,8 @@ public class Database {
 				String sql1 = "INSERT INTO scoreHistory VALUES (?,?)";
 				
 				PreparedStatement updating = connection.prepareStatement(sql1);
-				
 				updating.setString(1, userName);
 				updating.setInt(2, currscore);
-				
 				updating.execute();
 				
 			}
@@ -93,11 +101,11 @@ public class Database {
 	}
 	
 
-public static void main(String[] args) {
+/*public static void main(String[] args) {
 		Database db = new Database();
 		db.findTopThree();
 		//db.storeNewUser("SX", 67);
 		
-}
+}*/
 }
 

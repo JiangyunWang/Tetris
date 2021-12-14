@@ -7,6 +7,9 @@ import mvc.view.LeftPanel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -15,6 +18,11 @@ import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import database.Database;
 
 public class Controller {
     private GameFrame gf;
@@ -46,7 +54,6 @@ public class Controller {
     }
 
     public void move() {
-//        System.out.println("before loop");// *******************
 
         Timer timer1 = new Timer();
 
@@ -58,10 +65,29 @@ public class Controller {
                 gf.refresh();
                 if (lpm.getGameOver()) {
                     timer1.cancel();
-                    System.out.println("over!!!");
+                  
+					gameOverFlag();
+				
                 }
             }
         }, 1000, 1000);
+    }
+
+
+    public void gameOverFlag() {
+    	System.out.println("in gameover flag!!!");
+	 JFrame jFrame = new JFrame();
+	 
+	 JOptionPane.showMessageDialog(jFrame, "Game Over! Your score is: " + rpm.getScore());
+	Database db = new Database();
+	
+	ArrayList<String> result = db.findTop();
+	
+	 JOptionPane.showMessageDialog(jFrame, "World Top Score is " + result.get(0) + "\n" + "User name : " + result.get(1));//!!!!!!!!!!
+	
+	 String getMessage = JOptionPane.showInputDialog(jFrame, "Enter your user name");
+	 JOptionPane.showMessageDialog(jFrame, "Your message: "+getMessage);
+	 
     }
 
 

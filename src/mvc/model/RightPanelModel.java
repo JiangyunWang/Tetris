@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 public class RightPanelModel {
-	private int line = 0; 
-	private String name = "anonymity";
-	private int score = 0;
+	private int line; 
+	//private String name = "anonymity";
+	private int score;
 	private IShape block;
 	private IShape nextBlock;
 	private Random rnd;
@@ -55,10 +55,9 @@ public class RightPanelModel {
 			nextBlock = new Square(Color.red);
 		}
 		//***************
-		int x = nextBlock.getCenter()[0];
 		int y = nextBlock.getCenter()[1];
 		
-			nextBlock.setY(y+5);
+			nextBlock.setY(y+4);
 		
 		/*int shapeInt = rnd.nextInt(7);
 		switch (shapeInt) {
@@ -89,9 +88,9 @@ public class RightPanelModel {
 		return line;
 	}
 	  
-	public String getName() {
+	/*public String getName() {
 		return name;
-	}
+	}*/
 	public int getScore() {
 		return score;
 	}
@@ -100,11 +99,11 @@ public class RightPanelModel {
 		this.line = line;
 	}
 	
-	public void setName(String name) {
+	/*public void setName(String name) {
 		this.name = name;
-	}
+	}*/
 	public void setScore(int score) {
-		this.score = score;
+		this.score += score;
 	}
 	public IShape getBlock() {
 		return block;
