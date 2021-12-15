@@ -53,7 +53,7 @@ public class ClientMulti {
         }
 //        player.getGf().openButton.setFocusable(false);
 
-        System.out.println("--------------：");
+//        System.out.println("--------------：");
 
         PlayerInfo p = new PlayerInfo();
 
@@ -63,7 +63,7 @@ public class ClientMulti {
             // Get the radius from the text field
 
             toServer = new ObjectOutputStream(socket.getOutputStream());
-            System.out.println("--------------：");
+
             p.setScore(player.getRpm().getScore());
             p.setWin(player.getLpm().getGameOver());
             p.setCommand(player.getGf().getCommand());
@@ -72,7 +72,10 @@ public class ClientMulti {
             toServer.writeObject(p);
             toServer.flush();
 
+
+            System.out.println("--------------：to server");
             fromServer = new ObjectInputStream(socket.getInputStream());
+            System.out.println("--------------：from server"+fromServer);
                 // Read from input
             Object object = fromServer.readObject();
 
@@ -82,17 +85,20 @@ public class ClientMulti {
             PlayerInfo self = map.get(player.getPlayer());
             PlayerInfo compe = null;
             for (Integer i: map.keySet()) {
+                System.out.println("get compe");
                 if (i!=player.getPlayer()) {
                     compe = map.get(i);
                 }
             }
 
             if (compe!=null &&compe.isLose()) {
+                System.out.println("get lose");
                 player.getLpm().gameOver();
 //                rpm shows win or lose
             }
 
             if (compe!=null &&compe.isWin()) {
+                System.out.println("get win");
                 player.getLpm().gameOver();
 //                rpm shows win or lose
             }

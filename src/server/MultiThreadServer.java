@@ -63,11 +63,11 @@ public class MultiThreadServer extends JFrame implements Runnable {
                 // Create and start a new thread for the connection
                 threads.put(clientNo,new Thread(new HandleAClient(socket, clientNo)));
                 System.out.println("server：threads size: "+threads.size());
-                if(threads.size()==2) {
+//                if(threads.size()==2) {
                     for (Thread t: threads.values()) {
                         t.start();
                     }
-                }
+//                }
 
             }
         }
@@ -103,16 +103,26 @@ public class MultiThreadServer extends JFrame implements Runnable {
                 DataOutputStream out = new DataOutputStream(socket.getOutputStream());
                 out.writeInt(clientNum);
                 out.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-                fromClient = new ObjectInputStream(socket.getInputStream());
 
-                // Create an output stream to send data to the server
-                toClient = new ObjectOutputStream(socket.getOutputStream());
+//            try {
+//
+//
+//            } catch (IOException ioe) {
+//                ioe.printStackTrace();
+//            }
                 // Continuously serve the client
                 while (true) {
                     try {
-                        Object object = fromClient.readObject();
+                        fromClient = new ObjectInputStream(socket.getInputStream());
 
+                        // Create an output stream to send data to the server
+                        toClient = new ObjectOutputStream(socket.getOutputStream());
+                        Object object = fromClient.readObject();
+                        System.out.println(" from client");
                         // Write to the file
                         PlayerInfo info = (PlayerInfo) object;
                         if (object!=null)  {
@@ -120,6 +130,7 @@ public class MultiThreadServer extends JFrame implements Runnable {
                         }
 
                         toClient.writeObject(players);
+                        System.out.println(" to client");
                         toClient.flush();
                     } catch (IOException ie) {
                         ie.printStackTrace();
@@ -128,9 +139,9 @@ public class MultiThreadServer extends JFrame implements Runnable {
                     }
 
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
 
 
 
