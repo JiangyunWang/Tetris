@@ -267,8 +267,6 @@ public class LeftPanelModel {
 
 		}
 
-		// System.out.println("center is" + center[0] + "center Y is" + center[1]);
-
 		if (shouldChangeToMap) {
 			changetoMap();
 		} else {
@@ -276,17 +274,7 @@ public class LeftPanelModel {
 
 		}
 
-		// *********************
-		/*
-		 * System.out.println("shouldchage: ");
-		 * System.out.println(shouldChangeToMap);
-		 * center = block.getCenter();
-		 * for(int i =0; i < currLook.length;++i) {
-		 * int currX= currLook[i][0] + center[0];
-		 * int currY = currLook[i][1] + center[1];
-		 * System.out.println("x is" + currX + " Y is" + currY);
-		 * }
-		 */
+
 	}
 
 	public void changetoMap() {

@@ -80,10 +80,10 @@ public class Controller {
 	 
 	 JOptionPane.showMessageDialog(jFrame, "Game Over! Your score is: " + rpm.getScore());
 	Database db = new Database();
-	System.out.println("after database!!!");
+	
 	ArrayList<String> result = db.findTop();
-	System.out.println(result.get(0));
-	 JOptionPane.showMessageDialog(jFrame, "World Top Score is " + result.get(0) + "\n" + "User name : " + result.get(1));//!!!!!!!!!!
+	//SSystem.out.println(result.get(0));
+	 JOptionPane.showMessageDialog(jFrame, "World Top Score is " + result.get(0) + "\n" + "User name : " + result.get(1));
 	
 	 String getMessage = JOptionPane.showInputDialog(jFrame, "Enter your user name to store your score history" + "\n" 
 			 					+"please note if your username is same as others, only highest score will be recorded." 

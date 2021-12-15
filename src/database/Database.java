@@ -18,7 +18,7 @@ public class Database {
 		try {
 			Connection	connection = null;
 		
-			connection = DriverManager.getConnection("jdbc:sqlite:..\\..\\javabook.db"); //current directory is projects/Tetris/src
+			connection = DriverManager.getConnection("jdbc:sqlite:javabook.db"); //current directory is projects/Tetris/src
 			String queryString = "select * from scoreHistory order by score DESC limit 1"; 
 			PreparedStatement preparedStatement = connection.prepareStatement(queryString);
 			//System.out.println("Database connected"); 
@@ -62,7 +62,7 @@ public class Database {
 		try {
 			Connection connection = null;
 		
-			connection = DriverManager.getConnection("jdbc:sqlite:..\\..\\javabook.db");
+			connection = DriverManager.getConnection("jdbc:sqlite:javabook.db");
 			String sql2 = "select score from scoreHistory where userName = ?";
 			
 			
