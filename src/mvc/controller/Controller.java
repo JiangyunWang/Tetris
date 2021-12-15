@@ -32,6 +32,7 @@ public class Controller {
     private IShape currShape;
     private int[][] map;
     public int playerId;
+    boolean win;
 
     public Controller() {
 
@@ -41,6 +42,7 @@ public class Controller {
         this.map = lpm.getMap();
         gf.setVisible(true);
         this.currShape = lpm.getBlock();
+        win = false;
         // this.gf.addKeyListener(new MyListener());
 
     }
@@ -65,7 +67,6 @@ public class Controller {
                 gf.refresh();
                 if (lpm.getGameOver()) {
                     timer1.cancel();
-                  
 					gameOverFlag();
 				
                 }
@@ -73,12 +74,19 @@ public class Controller {
         }, 1000, 1000);
     }
 
+    public void setWin() {
+        this.win = true;
+    }
 
     public void gameOverFlag() {
 
 	 JFrame jFrame = new JFrame();
-	 
-	 JOptionPane.showMessageDialog(jFrame, "Game Over! Your score is: " + rpm.getScore());
+	 if (isWin()) {
+         JOptionPane.showMessageDialog(jFrame, "You Win!\n Your score is: " + rpm.getScore());
+     } else {
+         JOptionPane.showMessageDialog(jFrame, "You Lose!\n Your score is: " + rpm.getScore());
+     }
+
 	Database db = new Database();
 	System.out.println("after database!!!");
 	ArrayList<String> result = db.findTop();
@@ -128,4 +136,7 @@ public class Controller {
 
     }
 
+    public boolean isWin() {
+        return win;
+    }
 }

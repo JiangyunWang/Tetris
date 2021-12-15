@@ -16,15 +16,14 @@ public class MultiThreadServer extends JFrame implements Runnable {
 
     // Number a client
     private int clientNo = -1;
-    Map<Integer, PlayerInfo> players;
-//    private int standby;
+    Map<Integer, Boolean> players;
     private Map<Integer, Thread> threads;
+    private boolean finished = false;
 
     public MultiThreadServer() {
         ta = new JTextArea(10,10);
         JScrollPane sp = new JScrollPane(ta);
         this.add(sp);
-//        standby = 0;
         this.setTitle("MultiThreadServer");
         this.setSize(400,200);
         Thread t = new Thread(this);
@@ -57,7 +56,6 @@ public class MultiThreadServer extends JFrame implements Runnable {
                         + inetAddress.getHostName() + "\n");
                 ta.append("Client " + clientNo + "'s IP Address is "
                         + inetAddress.getHostAddress() + "\n");
-//                standby++;
 
 
                 // Create and start a new thread for the connection
@@ -68,6 +66,8 @@ public class MultiThreadServer extends JFrame implements Runnable {
                         t.start();
                     }
                 }
+
+                if (finished) socket.close();
 
             }
         }
@@ -84,61 +84,76 @@ public class MultiThreadServer extends JFrame implements Runnable {
         private Socket socket; // A connected socket
         private int clientNum;
 
-        /** Construct a thread */
+        /**
+         * Construct a thread
+         */
         public HandleAClient(Socket socket, int clientNum) {
             this.socket = socket;
             this.clientNum = clientNum;
             if (!players.containsKey(clientNum)) {
-                players.put(clientNum, new PlayerInfo());
+                players.put(clientNum, false);
             }
 
 
         }
 
-        /** Run a thread */
+        /**
+         * Run a thread
+         */
         public void run() {
-            ObjectInputStream fromClient;
-            ObjectOutputStream toClient;
+            DataInputStream fromClient;
+            DataOutputStream toClient;
             try {
                 DataOutputStream out = new DataOutputStream(socket.getOutputStream());
                 out.writeInt(clientNum);
                 out.flush();
 
-                fromClient = new ObjectInputStream(socket.getInputStream());
-
-                // Create an output stream to send data to the server
-                toClient = new ObjectOutputStream(socket.getOutputStream());
-                // Continuously serve the client
-                while (true) {
-                    try {
-                        Object object = fromClient.readObject();
-
-                        // Write to the file
-                        PlayerInfo info = (PlayerInfo) object;
-                        if (object!=null)  {
-                            players.put(clientNum, info);
-                        }
-
-                        toClient.writeObject(players);
-                        toClient.flush();
-                    } catch (IOException ie) {
-                        ie.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-
-                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+                // Continuously serve the client
+            while (true) {
 
 
+                    try {
+                        fromClient = new DataInputStream(socket.getInputStream());
+
+                        // Create an output stream to send data to the server
+                        toClient = new DataOutputStream(socket.getOutputStream());
+
+                            toClient.writeBoolean(players.get(clientNum));
+                            toClient.flush();
+
+                         if (players.get(clientNum)) {
+                             finished = true;
+                         }
+                        boolean res = fromClient.readBoolean();
+                        System.out.println("id "+clientNum+" from client: "+res);
+                        if (res) {
+                            for (Integer id : players.keySet()) {
+                                if (id != clientNum) {
+                                    players.put(id, true);
+                                }
+                            }
+                            socket.close();
+                            fromClient.close();
+                            toClient.close();
+                        }
+
+
+
+
+
+                    } catch (IOException ie) {
+                        ie.printStackTrace();
+
+                    }
+                }
 
 
 
         }
     }
-
 
 
     /**
