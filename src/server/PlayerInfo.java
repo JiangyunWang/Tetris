@@ -1,10 +1,11 @@
 package server;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerInfo {
+public class PlayerInfo implements Serializable {
         int score;
         boolean win;
         boolean lose;

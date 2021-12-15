@@ -28,7 +28,6 @@ public class ClientMulti {
 
         }
 
-        if (player.getGf().connected) {
             try {
                 socket = new Socket("localhost", 8000);
                 DataOutputStream out = new DataOutputStream(socket.getOutputStream());
@@ -38,36 +37,23 @@ public class ClientMulti {
                 e.printStackTrace();
             }
 
-        }
-
         try {
             DataInputStream in = new DataInputStream(socket.getInputStream());
             id = in.readInt();
             player.getGf().setPlayer(id);
             System.out.println("received from server: "+id);
             System.out.println("player id："+player.playerId);
+
+
+
             player.move();
-            fromServer = new ObjectInputStream(socket.getInputStream());
-            toServer = new ObjectOutputStream(socket.getOutputStream());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 //        player.getGf().openButton.setFocusable(false);
 
-        try {
-            socket = new Socket("localhost", 8000);
-            DataInputStream in = new DataInputStream(socket.getInputStream());
-            id = in.readInt();
-            player.getGf().setPlayer(id);
-            System.out.println("received from server: "+id);
-            System.out.println("player id："+player.playerId);
-            player.move();
-            System.out.println("--------------：");
-            fromServer = new ObjectInputStream(socket.getInputStream());
-            toServer = new ObjectOutputStream(socket.getOutputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println("--------------：");
 
         PlayerInfo p = new PlayerInfo();
 
@@ -76,6 +62,8 @@ public class ClientMulti {
         try {
             // Get the radius from the text field
 
+            toServer = new ObjectOutputStream(socket.getOutputStream());
+            System.out.println("--------------：");
             p.setScore(player.getRpm().getScore());
             p.setWin(player.getLpm().getGameOver());
             p.setCommand(player.getGf().getCommand());
@@ -84,6 +72,7 @@ public class ClientMulti {
             toServer.writeObject(p);
             toServer.flush();
 
+            fromServer = new ObjectInputStream(socket.getInputStream());
                 // Read from input
             Object object = fromServer.readObject();
 
