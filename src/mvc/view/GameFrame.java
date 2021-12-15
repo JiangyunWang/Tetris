@@ -22,14 +22,9 @@ public class GameFrame extends JFrame {
 
     private RightPanel rPanel;
     private LeftPanel lPanel;
-    public JButton openButton;
-    JPanel controlPanel;
     public boolean connected;
     private int playerId;
     private List<String> command;
-
-    // RightPanelModel rpm;
-    // LeftPanelModel lpm;
 
     public GameFrame(RightPanelModel rpm, LeftPanelModel lpm, int id) {
         this.playerId = id;
@@ -42,13 +37,10 @@ public class GameFrame extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(creatMenus());
 
-        controlPanel = new JPanel();
-
         rPanel = new RightPanel(new BorderLayout(), rpm);
         lPanel = new LeftPanel(lpm);
         this.add(lPanel, BorderLayout.CENTER);
         this.add(rPanel, BorderLayout.EAST);
-        this.add(controlPanel, BorderLayout.NORTH);
         this.setVisible(true);
         setJMenuBar(menuBar);
         connected = false;
