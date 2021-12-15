@@ -75,18 +75,21 @@ public class Controller {
 
 
     public void gameOverFlag() {
-    	System.out.println("in gameover flag!!!");
+
 	 JFrame jFrame = new JFrame();
 	 
 	 JOptionPane.showMessageDialog(jFrame, "Game Over! Your score is: " + rpm.getScore());
 	Database db = new Database();
-	
+	System.out.println("after database!!!");
 	ArrayList<String> result = db.findTop();
-	
+	System.out.println(result.get(0));
 	 JOptionPane.showMessageDialog(jFrame, "World Top Score is " + result.get(0) + "\n" + "User name : " + result.get(1));//!!!!!!!!!!
 	
-	 String getMessage = JOptionPane.showInputDialog(jFrame, "Enter your user name");
-	 JOptionPane.showMessageDialog(jFrame, "Your message: "+getMessage);
+	 String getMessage = JOptionPane.showInputDialog(jFrame, "Enter your user name to store your score history" + "\n" 
+			 					+"please note if your username is same as others, only highest score will be recorded." 
+			 				  + "\n" + "\n"+ "Enter your user name: ");
+	 db.storeNewUser(getMessage, this.rpm.getScore());
+	 JOptionPane.showMessageDialog(jFrame, "Your username: "+ getMessage + " has been recoreded");
 	 
     }
 
