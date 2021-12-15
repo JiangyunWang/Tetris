@@ -44,7 +44,7 @@ public class RightPanel extends JPanel {
 	
 	
 	public void creatLabel() {
-		score = new JLabel ("          Score:     "+ model.getScore());
+		score = new JLabel ("         Current  Score:       " +String.valueOf(model.getScore()));
 		//UserName = new JLabel("          Name:     " +model.getName());
 		//erasedLine = new JLabel("          erased line:     " + model.getLine());
 

@@ -6,6 +6,9 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Map;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class ClientMulti {
     ObjectOutputStream toServer = null;
     ObjectInputStream fromServer = null;
@@ -100,7 +103,9 @@ public class ClientMulti {
 
             if (compe!=null &&compe.isLose()) {
                 player.getLpm().gameOver();
+                
 //                rpm shows win or lose
+                
             }
 
             if (compe!=null &&compe.isWin()) {
