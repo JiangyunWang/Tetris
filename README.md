@@ -55,22 +55,12 @@ project, we implements all of them. Moreover, we also use Swing,ENUM, Decorator 
 - Thread: In the folder server, the MultiThreadServer use thread to create each client and itself
 
 ### More details
-- Our design:
-This is similar to all other Tetris game. There are seven differently shape blocks, which will go down automatically by one block in the map after 1 second time elapse. You can NOT rotate block if there is not enough space to rotate. The completed lines disappear and player gain points from completed lines. The game ends when the blocks reach top of the map. In our game, there will be two players playing together.
-Open our game window, up-left corner is menu of this game. You can exist from there or you can click about to see the game info. In the main window, left side is 24 * 12 game map, where is the main game place. Right side is used to updating current score and show what is next block. 
--  In model:
-  Each block has their own class to store their center’s position and the offset of different parts in this block to the center.
-  Left panel model is to store information to control right panel which is the main game window in our Tetris. For example, it stores the size of the game map, current block, whether the game is over. Also the whole game logic are running in left panel model.
-  Right panel model stores the information of next block, current score and generating next block.
--  In view:
-  We using GUI to show information from model. There are two panels in the frame. Left panel is the main game window, right panel is to show your score and next block.
--  In controller:
-  All models and game frame will be initialized here. And it will send messages get from view to model, eg, key listener.
-  Also we have two more different package to separate our database and server-client design.
--  In database:
-  There will be three queries. One is to find the world best score to show in the end of game, another two is to update or insert new username and its score in database
--  In server - client:
-  We use thread here to create server and client.
+-Our design: This is similar to all other Tetris games. There are seven differently shape blocks, which will go down automatically by one block in the map after 1 second time elapse. You can NOT rotate the block if there is not enough space to rotate. The completed lines disappear and the player gain points from completed lines. The game ends when the blocks reach the top of the map. In our game, there will be two players playing together. Open our game window, the up-left corner is the menu of this game. You can exist from there or you can click about to see the game info. In the main window, the left side is a 24 * 12 game map, where is the main game place. The right side is used to update the current score and show what is next block is.
+-In model: Each block has its own class to store its center’s position and the offset of different parts in this block to the center. The left panel model is to store information to control the right panel which is the main game window in our Tetris. For example, it stores the size of the game map, current block, whether the game is over. Also, the whole game logic is running in the left panel model. The right panel model stores the information of the next block, current score, and generating next block.
+-In view: We use GUI to show information from the model. There are two panels in the frame. The left panel is the main game window, the right panel is show your score and next block.
+-In controller: All models and game frame will be initialized here. And it will send messages to get from view to model, eg, the key listener. Also, we have two more different packages to separate our database and server-client design.
+-In the database: There will be three queries. One is to find the world best score to show at the end of the game, another two is to update or insert a new username and its score in the database
+-In server - client: We use a thread here to create server and client.
 
 
 
