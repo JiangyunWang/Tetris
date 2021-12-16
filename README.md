@@ -10,11 +10,16 @@ This is a two-player Tetris. You can run this in one computer or in two computer
 
 ### This is general instruction:
 1. Configure the environment on ide
+
+         make sure you are running JRE version: JDK 16
+    
    - Eclips
+   1. Setting version: Perference -> Java -> Installed  JREs -> Open JDK 16.0.1
    1. Go to Project Explorer (usually on left side)-> find the project folder -> find src -> right click src
    1. Click “Properties” -> click “Java Build Path” (on the left side) -> click “Libraries” on the right top part of the window
    1. Click on “Add Jars” -> choose the “sqlite-jdbc-3.30.1.jar” in current folder” -> click “apply and close”
-
+    1. make sure you are running jre version: JDK 16
+    
    - IntelliJ
    1. Go to File ->  Project Structure -> Module
    1. Click on “dependencies” -> click “+” button ->choose “1 JARs and Directories …”, choose the sqlite-jdbc-3.30.1.jar
