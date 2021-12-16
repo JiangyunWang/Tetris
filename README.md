@@ -1,5 +1,7 @@
 #How to run our game:
+
 This is a two-player Tetris. You can run this in one computer or in two computers.
+
 ###This is general instruction:
 1. Configure the environment on ide
    - Eclips
