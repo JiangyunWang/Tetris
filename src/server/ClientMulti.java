@@ -33,8 +33,6 @@ public class ClientMulti {
             DataInputStream in = new DataInputStream(socket.getInputStream());
             id = in.readInt();
             player.getGf().setPlayer(id);
-            System.out.println("received from server: "+id);
-            System.out.println("player id："+player.playerId);
 
 
 
@@ -47,19 +45,14 @@ public class ClientMulti {
 
         while (true) {
             try {
-//                System.out.println("player status: "+player.isLose());
                 fromServer = new DataInputStream(socket.getInputStream());
                 boolean isWin = fromServer.readBoolean();
-                System.out.println("id: "+id+" from server: "+ isWin);
                 if (isWin) {
                     player.setWin();
                     player.getLpm().setGameOver(true);
-                    System.out.println("id: "+id+"wins");
 
                 }
 
-
-//                if (player.isLose())  {
                     toServer = new DataOutputStream(socket.getOutputStream());
                     toServer.writeBoolean(player.getLpm().getGameOver());
                     toServer.flush();
@@ -70,9 +63,6 @@ public class ClientMulti {
             catch(IOException ex){
                 System.err.println(ex);
             }
-//            catch (ClassNotFoundException ce) {
-//                System.err.println(ce);
-//            }
         }
     }
 

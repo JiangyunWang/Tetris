@@ -62,7 +62,6 @@ public class MultiThreadServer extends JFrame implements Runnable {
 
                 // Create and start a new thread for the connection
                 threads.put(clientNo,new Thread(new HandleAClient(socket, clientNo)));
-                System.out.println("server：threads size: "+threads.size());
                 if(threads.size()==2) {
                     for (Thread t: threads.values()) {
                         t.start();
@@ -130,7 +129,6 @@ public class MultiThreadServer extends JFrame implements Runnable {
                              finished = true;
                          }
                         boolean res = fromClient.readBoolean();
-                        System.out.println("id "+clientNum+" from client: "+res);
                         if (res) {
                             for (Integer id : players.keySet()) {
                                 if (id != clientNum) {
