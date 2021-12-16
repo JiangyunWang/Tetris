@@ -28,6 +28,7 @@ This is a two-player Tetris. You can run this in one computer or in two computer
 ### We also provide jar files for one machine to run one server and two players.
 1. Click on three jar files：Server.jar, LocalClient1.jar, LocalClient2.jar
 1. Then one server and two clients will show on the screen and follows the above steps from step 4
+2. This version is without database. If you want to see the one with database, please see the demo below how to run  the game
 ### We've also attackd the demo to show how to run the game
 1. Demo by using one laptop: https://youtu.be/ucSHPbvAZoI
 2. Demo by using two laptops: https://youtu.be/o0rhCp_IfgY 
