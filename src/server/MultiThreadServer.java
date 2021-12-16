@@ -21,6 +21,8 @@ public class MultiThreadServer extends JFrame implements Runnable {
     private boolean finished = false;
 
     public MultiThreadServer() {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
         ta = new JTextArea(10,10);
         JScrollPane sp = new JScrollPane(ta);
         this.add(sp);

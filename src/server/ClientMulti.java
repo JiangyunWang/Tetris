@@ -25,9 +25,6 @@ public class ClientMulti {
         }
         try {
             socket = new Socket("localhost", 8000);
-//            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-//            out.writeBoolean(true);
-//            out.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
