@@ -1,13 +1,8 @@
-
-
-
-
-
-#How to run our game:
+# How to run our game:
 
 This is a two-player Tetris. You can run this in one computer or in two computers.
 
-###This is general instruction:
+### This is general instruction:
 1. Configure the environment on ide
    - Eclips
    - IntelliJ
@@ -20,14 +15,14 @@ This is a two-player Tetris. You can run this in one computer or in two computer
 1. Game will end when either one player’s block reaches the top of the board.
 1. When the game is over, you will see your score and world best score. Also, you can type your username to store your score in the database.
 
-###We also provide jar files for one machine to run one server and two players.
+### We also provide jar files for one machine to run one server and two players.
 1. Click on three jar files：Server.jar, LocalClient1.jar, LocalClient2.jar
 1. Then one server and two clients will show on the screen and follows the above steps from step 4
 ### We've also attackd the demo to show how to run the game
 1. Demo1:
 2. Demo2: 
 
-#How to play the game:
+# How to play the game:
 ### One-computer-playing instruction: 
 In this way, you and your friends should fight for the mouse to click your client window to win the “focus right” to control your block, which may give you more fun.
 Find “MultiThreadServer” in server package, run this program to open the sever. Then find “ClientMuti” in the same package. run ClientMuti (open two client). The game will start only when both player press SPACE button.
@@ -48,7 +43,7 @@ NOTE: if you cannot connect to the database, (we use relative path, but in case 
 
 Enjoy our game!
 
-#Design
+# Design
 In our proposal: we said that we will use four artifacts: MVC, GUI, Server-client, Database, and Thread. Finally, in our
 project, we implements all of them. Moreover, we also use Swing,ENUM, Decorator Design
 
@@ -59,7 +54,7 @@ project, we implements all of them. Moreover, we also use Swing,ENUM, Decorator 
   Moreover, it has sqlite-jdbc.3.30.1.jar for database configuration
 - Thread: In the folder server, the MultiThreadServer use thread to create each client and itself
 
-###More details
+### More details
 - Our design:
 This is similar to all other Tetris game. There are seven differently shape blocks, which will go down automatically by one block in the map after 1 second time elapse. You can NOT rotate block if there is not enough space to rotate. The completed lines disappear and player gain points from completed lines. The game ends when the blocks reach top of the map. In our game, there will be two players playing together.
 Open our game window, up-left corner is menu of this game. You can exist from there or you can click about to see the game info. In the main window, left side is 24 * 12 game map, where is the main game place. Right side is used to updating current score and show what is next block. 
