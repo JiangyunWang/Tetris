@@ -23,8 +23,8 @@ This is a two-player Tetris. You can run this in one computer or in two computer
 1. Click on three jar files：Server.jar, LocalClient1.jar, LocalClient2.jar
 1. Then one server and two clients will show on the screen and follows the above steps from step 4
 ### We've also attackd the demo to show how to run the game
-1. Demo1:
-2. Demo2: 
+1. Demo by using one laptop: https://youtu.be/ucSHPbvAZoI
+2. Demo by using two laptops: https://youtu.be/o0rhCp_IfgY 
 
 # How to play the game:
 ### One-computer-playing instruction: 
