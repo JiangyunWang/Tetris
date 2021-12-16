@@ -1,5 +1,8 @@
 # Java Project: Tetris
 ### Authors: Yihan Wang, Jiangyun Wang
+### If you have any question to run the game, welcome to contact us by email:
+- yw5576@nyu.edu
+- jw7077@nyu.edu
 
 # How to run our game:
 
